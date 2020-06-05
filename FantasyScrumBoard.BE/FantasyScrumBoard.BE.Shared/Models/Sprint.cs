@@ -18,5 +18,6 @@ namespace FantasyScrumBoard.BE.Shared.Models
 
         public virtual Project Project { get; set; }
         public virtual User Mvp { get; set; }
+        public virtual ICollection<WorkItem> WorkItems { get; set; }
     }
 }

@@ -38,14 +38,14 @@ namespace FantasyScrumBoard.BE.Shared.Models.EntityConfig
                 .WithMany(project => project.Sprints)
                 .HasForeignKey(sprint => sprint.ProjectId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder
                 .HasOne(sprint => sprint.Mvp)
                 .WithMany(mvp => mvp.Sprints)
                 .HasForeignKey(sprint => sprint.MvpId)
                 .IsRequired(false)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

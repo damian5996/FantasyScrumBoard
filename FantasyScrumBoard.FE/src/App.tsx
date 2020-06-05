@@ -3,9 +3,9 @@ import { Switch, Route } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 
 import { UnprotectedRoute, ProtectedRoute } from 'features/auth';
-import ProjectForm from 'features/project-form';
 
 import { withLazy } from 'shared/utils';
+import ProjectForm from 'features/project-form';
 
 const LoginView = withLazy(() => import('views/login'));
 const ProjectBoardView = withLazy(() => import('views/project-board'));
@@ -24,11 +24,7 @@ const App = () => {
           }}
         />
 
-        <Route
-        exact
-        path="/dashboard"
-        component={DashboardView}
-        />
+        <ProtectedRoute exact path="/dashboard" redirect="/login" component={DashboardView} />
 
         <UnprotectedRoute exact path="/login" redirect="/" component={LoginView} />
 
@@ -42,9 +38,10 @@ const App = () => {
         <ProtectedRoute exact path="/graph" redirect="/login" component={GraphView} />
 
         <Route path="**" render={() => <div>Not Found Page </div>} />
-      </Switch>
 
-      <ProjectForm />
+      </Switch>
+      {/* <ProjectForm /> */}
+
     </BrowserRouter>
   );
 };

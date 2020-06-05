@@ -1,7 +1,7 @@
 $primary: #3381e1;
 $primaryDark: #d30000;
 
-$secondary: #65ffcb;
+$secondary: #5e0042;
 
 $surface: #101b48;
 $surfaceDark: #193457;
@@ -17,7 +17,9 @@ $black: #000;
 
 $gradient: linear-gradient(to top right, #04060e, #121c47);
 
-$shadowPrimary: 0 3px 6px rgba(0, 0, 0, 0.16);
+$gradientPrimary: linear-gradient(to right, #4d0043, #1a006c);
+
+$shadowPrimary: 0 3px 6px rgba(61, 39, 39, 0.16);
 
 $views: rgba(255, 255, 255, 0.74);
 $stars: #ffdd00;

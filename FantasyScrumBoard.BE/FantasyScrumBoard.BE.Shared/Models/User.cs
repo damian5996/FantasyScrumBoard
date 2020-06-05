@@ -13,7 +13,7 @@ namespace FantasyScrumBoard.BE.Shared.Models
         public int Level { get; set; }
         public string Nick { get; set; }
         public int Exp { get; set; }
-        public DateTime CreateAt { get; set; }
+        public DateTime CreatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
 
         public virtual ICollection<Notification> Notifications { get; set; }
@@ -21,7 +21,7 @@ namespace FantasyScrumBoard.BE.Shared.Models
         public virtual ICollection<UserAchievement> UserAchievements { get; set; }
         public virtual ICollection<UserProject> UserProjects { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
-        public virtual ICollection<Sprint> SprintsMvp { get; set; }
+        public virtual ICollection<Sprint> Sprints { get; set; }
 
     }
 }

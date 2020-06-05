@@ -85,8 +85,6 @@ const ProjectForm = () => {
           />
         </div>
 
-        {console.log(isPending, isDirty, isInvalid)}
-
         <Button type="submit" disabled={isPending || (isDirty && isInvalid)}>
           CREATE
         </Button>

@@ -34,7 +34,7 @@ namespace FantasyScrumBoard.BE.DataAccess.Migrations
                     EndDate = table.Column<DateTime>(nullable: true),
                     DeletedAt = table.Column<DateTime>(nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: false),
-                    EditedAt = table.Column<DateTime>(nullable: false)
+                    EditedAt = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -83,7 +83,7 @@ namespace FantasyScrumBoard.BE.DataAccess.Migrations
                         column: x => x.ReceiverId,
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -108,7 +108,7 @@ namespace FantasyScrumBoard.BE.DataAccess.Migrations
                         column: x => x.MvpId,
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Sprint_Project_ProjectId",
                         column: x => x.ProjectId,
@@ -121,33 +121,33 @@ namespace FantasyScrumBoard.BE.DataAccess.Migrations
                 name: "UserAchievement",
                 columns: table => new
                 {
-                    AchievementId = table.Column<long>(nullable: false),
                     UserId = table.Column<long>(nullable: false),
+                    AchievementId = table.Column<long>(nullable: false),
                     EarnedDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserAchievement", x => x.AchievementId);
+                    table.PrimaryKey("PK_UserAchievement", x => new { x.UserId, x.AchievementId });
                     table.ForeignKey(
                         name: "FK_UserAchievement_Achievement_AchievementId",
                         column: x => x.AchievementId,
                         principalTable: "Achievement",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_UserAchievement_User_UserId",
                         column: x => x.UserId,
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "UserProject",
                 columns: table => new
                 {
-                    ProjectId = table.Column<long>(nullable: false),
                     UserId = table.Column<long>(nullable: false),
+                    ProjectId = table.Column<long>(nullable: false),
                     Role = table.Column<int>(nullable: false),
                     Level = table.Column<int>(nullable: false),
                     Exp = table.Column<int>(nullable: false),
@@ -155,19 +155,19 @@ namespace FantasyScrumBoard.BE.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserProject", x => x.ProjectId);
+                    table.PrimaryKey("PK_UserProject", x => new { x.UserId, x.ProjectId });
                     table.ForeignKey(
                         name: "FK_UserProject_Project_ProjectId",
                         column: x => x.ProjectId,
                         principalTable: "Project",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_UserProject_User_UserId",
                         column: x => x.UserId,
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -202,7 +202,7 @@ namespace FantasyScrumBoard.BE.DataAccess.Migrations
                         column: x => x.ProjectId,
                         principalTable: "Project",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_WorkItem_Sprint_SprintId",
                         column: x => x.SprintId,
@@ -231,13 +231,13 @@ namespace FantasyScrumBoard.BE.DataAccess.Migrations
                         column: x => x.AuthorId,
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Comment_WorkItem_WorkItemId",
                         column: x => x.WorkItemId,
                         principalTable: "WorkItem",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -266,14 +266,14 @@ namespace FantasyScrumBoard.BE.DataAccess.Migrations
                 column: "ProjectId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserAchievement_UserId",
+                name: "IX_UserAchievement_AchievementId",
                 table: "UserAchievement",
-                column: "UserId");
+                column: "AchievementId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserProject_UserId",
+                name: "IX_UserProject_ProjectId",
                 table: "UserProject",
-                column: "UserId");
+                column: "ProjectId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_WorkItem_AssignedUserId",

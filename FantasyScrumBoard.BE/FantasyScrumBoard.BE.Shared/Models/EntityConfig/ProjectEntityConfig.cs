@@ -41,7 +41,7 @@ namespace FantasyScrumBoard.BE.Shared.Models.EntityConfig
 
             builder
                  .Property(project => project.EditedAt)
-                 .IsRequired();
+                 .IsRequired(false);
         }
     }
 }

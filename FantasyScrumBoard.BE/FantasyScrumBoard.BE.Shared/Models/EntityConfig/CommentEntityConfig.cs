@@ -31,14 +31,14 @@ namespace FantasyScrumBoard.BE.Shared.Models.EntityConfig
                 .WithMany(author => author.Comments)
                 .HasForeignKey(comment => comment.AuthorId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder
                 .HasOne(comment => comment.WorkItem)
                 .WithMany(workItem => workItem.Comments)
                 .HasForeignKey(comment => comment.WorkItemId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

@@ -45,7 +45,7 @@ namespace FantasyScrumBoard.BE.Shared.Models.EntityConfig
                 .WithMany(receiver => receiver.Notifications)
                 .HasForeignKey(notification => notification.ReceiverId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

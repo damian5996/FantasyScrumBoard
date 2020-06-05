@@ -11,10 +11,7 @@ namespace FantasyScrumBoard.BE.Shared.Models.EntityConfig
         public void Configure(EntityTypeBuilder<UserProject> builder)
         {
             builder
-                .HasKey(userProject => userProject.UserId);
-
-            builder
-                .HasKey(userProject => userProject.ProjectId);
+                .HasKey(userProject => new { userProject.UserId, userProject.ProjectId });
 
             builder
                 .Property(userProject => userProject.Role)
@@ -37,14 +34,14 @@ namespace FantasyScrumBoard.BE.Shared.Models.EntityConfig
                 .WithMany(user => user.UserProjects)
                 .HasForeignKey(userProject => userProject.UserId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder
                 .HasOne(userProject => userProject.Project)
                 .WithMany(project => project.UserProjects)
                 .HasForeignKey(userProject => userProject.ProjectId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

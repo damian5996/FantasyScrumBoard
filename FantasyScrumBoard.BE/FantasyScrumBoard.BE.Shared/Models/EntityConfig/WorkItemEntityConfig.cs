@@ -67,7 +67,7 @@ namespace FantasyScrumBoard.BE.Shared.Models.EntityConfig
                 .WithMany(project => project.WorkItems)
                 .HasForeignKey(workItem => workItem.ProjectId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

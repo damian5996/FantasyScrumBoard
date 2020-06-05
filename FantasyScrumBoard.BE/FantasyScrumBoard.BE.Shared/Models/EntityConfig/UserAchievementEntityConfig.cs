@@ -11,10 +11,7 @@ namespace FantasyScrumBoard.BE.Shared.Models.EntityConfig
         public void Configure(EntityTypeBuilder<UserAchievement> builder)
         {
             builder
-                .HasKey(userAchievement => userAchievement.UserId);
-
-            builder
-                .HasKey(userAchievement => userAchievement.AchievementId);
+                .HasKey(userAchievement => new { userAchievement.UserId, userAchievement.AchievementId });
 
             builder
                 .Property(userAchievement => userAchievement.EarnedDate)
@@ -25,14 +22,14 @@ namespace FantasyScrumBoard.BE.Shared.Models.EntityConfig
                 .WithMany(user => user.UserAchievements)
                 .HasForeignKey(userAchievement => userAchievement.UserId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder
                 .HasOne(userAchievement => userAchievement.Achievement)
                 .WithMany(achievement => achievement.UserAchievements)
                 .HasForeignKey(userAchievement => userAchievement.AchievementId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

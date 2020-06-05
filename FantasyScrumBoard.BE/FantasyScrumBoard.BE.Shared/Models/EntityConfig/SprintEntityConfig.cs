@@ -45,7 +45,7 @@ namespace FantasyScrumBoard.BE.Shared.Models.EntityConfig
                 .WithMany(mvp => mvp.Sprints)
                 .HasForeignKey(sprint => sprint.MvpId)
                 .IsRequired(false)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

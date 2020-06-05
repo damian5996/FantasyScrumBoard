@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FantasyScrumBoard.BE.DataAccess.Migrations
 {
     [DbContext(typeof(FantasyScrumBoardDbContext))]
-    [Migration("20200605195955_Initial_Schema")]
+    [Migration("20200605204405_Initial_Schema")]
     partial class Initial_Schema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -138,7 +138,6 @@ namespace FantasyScrumBoard.BE.DataAccess.Migrations
                         .HasMaxLength(512);
 
                     b.Property<DateTime?>("EditedAt")
-                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("EndDate")
@@ -239,24 +238,27 @@ namespace FantasyScrumBoard.BE.DataAccess.Migrations
 
             modelBuilder.Entity("FantasyScrumBoard.BE.Shared.Models.UserAchievement", b =>
                 {
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
                     b.Property<long>("AchievementId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("EarnedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
+                    b.HasKey("UserId", "AchievementId");
 
-                    b.HasKey("AchievementId");
-
-                    b.HasIndex("UserId");
+                    b.HasIndex("AchievementId");
 
                     b.ToTable("UserAchievement");
                 });
 
             modelBuilder.Entity("FantasyScrumBoard.BE.Shared.Models.UserProject", b =>
                 {
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
                     b.Property<long>("ProjectId")
                         .HasColumnType("bigint");
 
@@ -272,12 +274,9 @@ namespace FantasyScrumBoard.BE.DataAccess.Migrations
                     b.Property<int>("Role")
                         .HasColumnType("int");
 
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
+                    b.HasKey("UserId", "ProjectId");
 
-                    b.HasKey("ProjectId");
-
-                    b.HasIndex("UserId");
+                    b.HasIndex("ProjectId");
 
                     b.ToTable("UserProject");
                 });
@@ -345,13 +344,13 @@ namespace FantasyScrumBoard.BE.DataAccess.Migrations
                     b.HasOne("FantasyScrumBoard.BE.Shared.Models.User", "Author")
                         .WithMany("Comments")
                         .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("FantasyScrumBoard.BE.Shared.Models.WorkItem", "WorkItem")
                         .WithMany("Comments")
                         .HasForeignKey("WorkItemId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -360,7 +359,7 @@ namespace FantasyScrumBoard.BE.DataAccess.Migrations
                     b.HasOne("FantasyScrumBoard.BE.Shared.Models.User", "Receiver")
                         .WithMany("Notifications")
                         .HasForeignKey("ReceiverId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -369,7 +368,7 @@ namespace FantasyScrumBoard.BE.DataAccess.Migrations
                     b.HasOne("FantasyScrumBoard.BE.Shared.Models.User", "Mvp")
                         .WithMany("Sprints")
                         .HasForeignKey("MvpId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("FantasyScrumBoard.BE.Shared.Models.Project", "Project")
                         .WithMany("Sprints")
@@ -383,13 +382,13 @@ namespace FantasyScrumBoard.BE.DataAccess.Migrations
                     b.HasOne("FantasyScrumBoard.BE.Shared.Models.Achievement", "Achievement")
                         .WithMany("UserAchievements")
                         .HasForeignKey("AchievementId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("FantasyScrumBoard.BE.Shared.Models.User", "User")
                         .WithMany("UserAchievements")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -398,13 +397,13 @@ namespace FantasyScrumBoard.BE.DataAccess.Migrations
                     b.HasOne("FantasyScrumBoard.BE.Shared.Models.Project", "Project")
                         .WithMany("UserProjects")
                         .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("FantasyScrumBoard.BE.Shared.Models.User", "User")
                         .WithMany("UserProjects")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -419,7 +418,7 @@ namespace FantasyScrumBoard.BE.DataAccess.Migrations
                     b.HasOne("FantasyScrumBoard.BE.Shared.Models.Project", "Project")
                         .WithMany("WorkItems")
                         .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("FantasyScrumBoard.BE.Shared.Models.Sprint", "Sprint")

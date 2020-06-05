@@ -9,7 +9,8 @@ import { withLazy } from 'shared/utils';
 
 const LoginView = withLazy(() => import('views/login'));
 const ProjectBoardView = withLazy(() => import('views/project-board'));
-const GraphView = withLazy(() => import('views/graph-view'));
+const GraphView = withLazy(() => import('views/graph'));
+const DashboardView = withLazy(() => import('views/dashboard'));
 
 const App = () => {
   return (
@@ -21,6 +22,12 @@ const App = () => {
           render={() => {
             return <div>Helo world</div>;
           }}
+        />
+
+        <Route
+        exact
+        path="/dashboard"
+        component={DashboardView}
         />
 
         <UnprotectedRoute exact path="/login" redirect="/" component={LoginView} />

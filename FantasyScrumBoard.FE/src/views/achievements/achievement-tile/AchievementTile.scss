@@ -1,0 +1,11 @@
+@import 'styles/mixins';
+
+.achievementTile {
+  @include colCenter;
+  justify-content: center;
+  background-color: orange;
+  width: 150px;
+  height: 150px;
+  margin-left: 10px;
+  margin-right: 10px;
+}

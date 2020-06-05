@@ -6,9 +6,33 @@ body {
   color: $white;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  background: $surface;
 }
 
 #root {
   min-height: 100vh;
+}
+
+.kep-login-facebook {
+  position: relative;
+  width: 320px;
+  height: 56px;
+  text-transform: none !important;
+  background: $secondary !important;
+  border: none !important;
+  font-size: 15px !important;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-align: center;
+  color: $white;
+  font-family: $fontPrimary;
+  margin-bottom: 20px;
+
+  svg {
+    position: absolute;
+    left: 20px;
+    top: 15px;
+  }
 }

@@ -44,7 +44,7 @@
   .validation {
     @include row;
     height: 12px;
-    color: $error;
+    color: $white;
     margin-top: 12px;
 
     .error {

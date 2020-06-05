@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FantasyScrumBoard.BE.BL;
+using FantasyScrumBoard.BE.Shared;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -38,7 +39,9 @@ namespace FantasyScrumBoard.BE
                     });
             });
 
-            services.BusinessLogicConfigureServices(Configuration);
+            services
+                .SharedConfigureServices(Configuration)
+                .BusinessLogicConfigureServices(Configuration);
         }   
             
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

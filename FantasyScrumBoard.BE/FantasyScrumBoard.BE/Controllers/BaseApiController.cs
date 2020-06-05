@@ -1,4 +1,4 @@
-﻿using FantasyScrumBoard.BE.Shared.Constants;
+﻿using FantasyScrumBoard.BE.Shared;
 using FantasyScrumBoard.BE.Shared.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 

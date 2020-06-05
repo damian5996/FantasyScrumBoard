@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 
 import { UnprotectedRoute, ProtectedRoute } from 'features/auth';
+import ProjectForm from 'features/project-form';
 
 import { withLazy } from 'shared/utils';
 
@@ -42,6 +43,8 @@ const App = () => {
 
         <Route path="**" render={() => <div>Not Found Page </div>} />
       </Switch>
+
+      <ProjectForm />
     </BrowserRouter>
   );
 };

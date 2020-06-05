@@ -1,6 +1,5 @@
-import { Project } from 'api';
-
 import { News } from '.';
+import { Project } from '..';
 
 const getProjectItems = (count: number): Project[] => 
   Array.from({ length: count}, (v, k) => k).map(k => ({

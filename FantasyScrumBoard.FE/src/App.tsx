@@ -9,8 +9,10 @@ import ProjectForm from 'features/project-form';
 
 const LoginView = withLazy(() => import('views/login'));
 const ProjectBoardView = withLazy(() => import('views/project-board'));
+const ProjectDetailsView = withLazy(() => import('views/project-details'));
 const GraphView = withLazy(() => import('views/graph'));
 const DashboardView = withLazy(() => import('views/dashboard'));
+const AchievementListView = withLazy(() => import('views/achievements'));
 
 const App = () => {
   return (
@@ -28,11 +30,23 @@ const App = () => {
 
         <UnprotectedRoute exact path="/login" redirect="/" component={LoginView} />
 
+        <Route
+        exact
+        path="/user/:id/achievement"
+        component={AchievementListView}
+        />
+        
         <ProtectedRoute
           exact
           path="/project/:id/board"
           redirect="/login"
           component={ProjectBoardView}
+        />
+
+        <Route
+        exact
+        path="/project/:id/details"
+        component={ProjectDetailsView}
         />
 
         <ProtectedRoute exact path="/graph" redirect="/login" component={GraphView} />
@@ -41,7 +55,6 @@ const App = () => {
 
       </Switch>
       {/* <ProjectForm /> */}
-
     </BrowserRouter>
   );
 };

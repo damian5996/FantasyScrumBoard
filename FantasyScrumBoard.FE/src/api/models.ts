@@ -18,14 +18,26 @@ export interface WorkItem {
   assignedId: string;
 }
 
-export interface Project {
+export interface User {
   id: number;
-  name: string;
-  description: string;
-  startDate: Date;
-  endDate: Date;
-  deletedAt: Date;
+  firstName: string;
+  lastName: string;
+  email: string;
+  level: number;
+  nick: string;
+  exp: number;
   createdAt: Date;
-  editedAt: Date;
+  deletedAt?: Date;
+}
+
+export interface Sprint {
+  id: number;
+  startDate: Date;
+  estimatedEndDate?: Date;
+  projectId: number;
+  mvpId: number;
+  closedAt: Date;
+  createdAt: Date;
+  number: number;
 }
 

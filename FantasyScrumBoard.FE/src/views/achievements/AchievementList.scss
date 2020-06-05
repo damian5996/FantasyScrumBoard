@@ -1,0 +1,7 @@
+@import 'styles/mixins';
+
+.achievementList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

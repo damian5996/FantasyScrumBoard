@@ -8,9 +8,10 @@ namespace FantasyScrumBoard.BE.Shared.Models
     {
         public long Id { get; set; }
         public DateTime StartDate { get; set; }
-        public DateTime EstimatedEndDate { get; set; }
-        public DateTime ClosedAt { get; set; }
+        public DateTime? EstimatedEndDate { get; set; }
+        public DateTime? ClosedAt { get; set; }
         public DateTime CreatedAt { get; set; }
+        public int Number { get; set; }
 
         public long ProjectId { get; set; }
         public long? MvpId { get; set; }

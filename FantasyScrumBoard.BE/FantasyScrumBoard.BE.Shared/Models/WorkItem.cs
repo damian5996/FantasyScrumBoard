@@ -11,7 +11,7 @@ namespace FantasyScrumBoard.BE.Shared.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime CreatedAt { get; set; }
-        public DateTime EditedAt { get; set; }
+        public DateTime? EditedAt { get; set; }
         public WorkItemStatus Status { get; set; }
         public WorkItemType Type { get; set; }
         public int StoryPoints { get; set; }
@@ -20,7 +20,7 @@ namespace FantasyScrumBoard.BE.Shared.Models
 
         public long? SprintId { get; set; }
         public long ProjectId { get; set; }
-        public long AssignedUserId { get; set; }
+        public long? AssignedUserId { get; set; }
 
         public virtual Sprint Sprint { get; set; }
         public virtual Project Project { get; set; }

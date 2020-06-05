@@ -15,5 +15,12 @@ namespace FantasyScrumBoard.BE.Shared.Models
         public int Exp { get; set; }
         public DateTime CreateAt { get; set; }
         public DateTime? DeletedAt { get; set; }
+
+        public virtual ICollection<Notification> Notifications { get; set; }
+        public virtual ICollection<WorkItem> WorkItems { get; set; }
+        public virtual ICollection<UserAchievement> UserAchievements { get; set; }
+        public virtual ICollection<UserProject> UserProjects { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
+
     }
 }

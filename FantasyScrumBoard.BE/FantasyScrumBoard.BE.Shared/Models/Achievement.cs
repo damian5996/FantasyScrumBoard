@@ -11,5 +11,7 @@ namespace FantasyScrumBoard.BE.Shared.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public AchievementType Type { get; set; }
+
+        public virtual ICollection<UserAchievement> UserAchievements { get; set; }
     }
 }

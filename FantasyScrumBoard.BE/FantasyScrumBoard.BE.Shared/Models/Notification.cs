@@ -15,6 +15,6 @@ namespace FantasyScrumBoard.BE.Shared.Models
         public string RedirectUrl { get; set; }
 
         public long ReceiverId { get; set; }
-        public User Receiver { get; set; }
+        public virtual User Receiver { get; set; }
     }
 }

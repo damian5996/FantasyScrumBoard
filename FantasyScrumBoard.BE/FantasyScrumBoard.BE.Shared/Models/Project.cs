@@ -14,5 +14,9 @@ namespace FantasyScrumBoard.BE.Shared.Models
         public DateTime? DeletedAt { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? EditedAt { get; set; }
+
+        public virtual ICollection<Sprint> Sprints { get; set; }
+        public virtual ICollection<WorkItem> WorkItems { get; set; }
+        public virtual ICollection<UserProject> UserProjects { get; set; }
     }
 }

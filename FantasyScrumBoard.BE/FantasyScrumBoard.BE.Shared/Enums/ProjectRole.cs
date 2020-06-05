@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FantasyScrumBoard.BE.Shared.Enums
 {
-    public enum Role
+    public enum ProjectRole
     {
         Unspecified = 0,
         Backend = 1,

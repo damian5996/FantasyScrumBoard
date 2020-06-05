@@ -13,7 +13,7 @@ namespace FantasyScrumBoard.BE.Shared.Models
         public virtual User User { get; set; }
         public virtual Project Project { get; set; }
 
-        public Role Role { get; set; }
+        public ProjectRole Role { get; set; }
         public int Level { get; set; }
         public int Exp { get; set; }
         public bool IsOwner { get; set; }

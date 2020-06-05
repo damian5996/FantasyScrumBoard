@@ -5,7 +5,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { withLazy } from 'shared/utils';
 
 const ProjectBoardView = withLazy(() => import('views/project-board'));
-const GraphView = withLazy(() => import('views/graph-view'));
+const GraphView = withLazy(() => import('views/graph'));
+const DashboardView = withLazy(() => import('views/dashboard'));
 
 const App = () => {
   return (
@@ -17,6 +18,12 @@ const App = () => {
           render={() => {
             return <div>Helo world</div>;
           }}
+        />
+
+        <Route
+        exact
+        path="/dashboard"
+        component={DashboardView}
         />
 
         <Route

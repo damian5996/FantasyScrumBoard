@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { ProjectTile, CurrentTasks, LatestNews, DataWrapper } from '.';
 
-import { getProjects, Project, WorkItem, getWorkItemsDashboard, News, getNews } from 'api';
+import { getProjects, WorkItem, getWorkItemsDashboard, News, getNews, Project } from 'api';
 
 import csx from './Dashboard.scss';
 

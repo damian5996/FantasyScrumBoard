@@ -4,3 +4,4 @@ export * from './utils';
 
 export * from './tasks';
 export * from './dashboard';
+export * from './projects';

@@ -17,7 +17,7 @@
     header {
       @include col;
       padding: 18px;
-      background: $primary;
+      background: $secondary;
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
 
@@ -35,7 +35,7 @@
 
     section {
       @include col;
-      background: $surfacePrimary;
+      background: $white;
 
       .yearPicker {
         @include rowBetween;
@@ -43,11 +43,11 @@
 
         & > button,
         & > span {
-          color: $primaryDark !important;
+          color: #333333 !important;
         }
 
         & > button:hover {
-          background: rgba($primary, 0.1);
+          background: rgba(#333333, 0.1);
         }
 
         & > span {
@@ -67,17 +67,17 @@
           @include labelSmall;
           text-align: center;
           margin: 8px 0;
-          color: $primary;
+          color: #333333;
         }
 
         & > button {
           min-width: unset;
           border-radius: 50%;
-          color: $primary;
+          color: #333333;
 
           &.activeDay {
             background: $secondary;
-            color: $black;
+            color: $white;
 
             &:hover {
               background: $secondary;
@@ -86,11 +86,11 @@
 
           &.prevDay,
           &.nextDay {
-            color: rgba($primary, 0.6);
+            color: rgba(#333333, 0.6);
           }
 
           &:hover {
-            background: rgba($primary, 0.1);
+            background: rgba(#333333, 0.1);
           }
         }
       }
@@ -100,13 +100,13 @@
       @include row;
       justify-content: flex-end;
       padding: 8px 12px;
-      background: $surfacePrimary;
+      background: $white;
 
       & > button {
-        color: $primary;
+        color: $primaryDark;
 
         &:first-of-type {
-          color: rgba($primary, 0.8);
+          color: rgba($primaryDark, 0.8);
           margin-right: 12px;
         }
       }

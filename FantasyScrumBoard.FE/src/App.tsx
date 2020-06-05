@@ -26,33 +26,24 @@ const App = () => {
           }}
         />
 
-        <ProtectedRoute exact path="/dashboard" redirect="/login" component={DashboardView} />
+        <UnprotectedRoute exact path="/dashboard" redirect="/login" component={DashboardView} />
 
         <UnprotectedRoute exact path="/login" redirect="/" component={LoginView} />
 
-        <Route
-        exact
-        path="/user/:id/achievement"
-        component={AchievementListView}
-        />
-        
-        <ProtectedRoute
+        <Route exact path="/user/:id/achievement" component={AchievementListView} />
+
+        <UnprotectedRoute
           exact
           path="/project/:id/board"
           redirect="/login"
           component={ProjectBoardView}
         />
 
-        <Route
-        exact
-        path="/project/:id/details"
-        component={ProjectDetailsView}
-        />
+        <Route exact path="/project/:id/details" component={ProjectDetailsView} />
 
-        <ProtectedRoute exact path="/graph" redirect="/login" component={GraphView} />
+        <UnprotectedRoute exact path="/graph" redirect="/login" component={GraphView} />
 
         <Route path="**" render={() => <div>Not Found Page </div>} />
-
       </Switch>
       {/* <ProjectForm /> */}
     </BrowserRouter>

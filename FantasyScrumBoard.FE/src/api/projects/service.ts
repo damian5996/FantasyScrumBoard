@@ -1,5 +1,5 @@
 import { ProjectDetails } from '.';
-import { Sprint, User } from 'api';
+import { Sprint, User, Project } from 'api';
 
 const createSprint = (id: number): Sprint => {
   return {
@@ -45,3 +45,20 @@ export const getProjectDetails = (projectId: number): Promise<ProjectDetails> =>
     }, 1500);
   });
 };
+
+export const addProject = (): Promise<Project> => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(null);
+    }, 1500);
+  });
+};
+
+export const editProject = (): Promise<Project> => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(null);
+    }, 1500);
+  });
+};
+

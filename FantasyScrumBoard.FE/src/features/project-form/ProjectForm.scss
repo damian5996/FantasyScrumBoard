@@ -1,0 +1,21 @@
+@import 'styles/mixins';
+
+.projectForm {
+  width: 420px;
+  border-radius: 4px;
+  background: $surface;
+  padding: 32px;
+
+  & > p {
+    margin-bottom: 24px;
+  }
+
+  .formField {
+    margin-bottom: 22px;
+  }
+
+  & > button {
+    margin-top: 24px;
+    width: 100%;
+  }
+}

@@ -1,0 +1,45 @@
+@import 'styles/mixins';
+
+.button,
+.iconButton {
+  &.primaryDark {
+    background: $primaryDark;
+    color: $white;
+
+    &:hover {
+      background: $primaryDark;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      background: $primaryDark;
+      color: $white;
+    }
+  }
+
+  &.primaryTransparent {
+    background: transparent;
+    color: $primary;
+
+    &:disabled {
+      color: rgba($primary, 0.6);
+    }
+  }
+}
+
+.button {
+  padding: 9px 20px !important;
+
+  & > span {
+    @include label;
+
+    svg {
+      margin-right: 12px;
+    }
+  }
+}
+
+.iconButton {
+  width: 50px;
+  height: 50px;
+}

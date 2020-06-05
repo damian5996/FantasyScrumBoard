@@ -2,7 +2,7 @@ import React from 'react';
 
 import Tree, { ReactD3TreeItem } from 'react-d3-tree';
 
-import csx from './GraphView.scss';
+import csx from './Graph.scss';
 
 const myTreeData: ReactD3TreeItem[] = [
   {
@@ -56,7 +56,7 @@ const myTreeData: ReactD3TreeItem[] = [
   }
 ];
 
-const GraphView = () => {
+const Graph = () => {
   const handleClick = (targetNode: ReactD3TreeItem, event: Event) => {
     console.log(targetNode);
     console.log(event);
@@ -77,4 +77,4 @@ const GraphView = () => {
   );
 };
 
-export default GraphView;
+export default Graph;

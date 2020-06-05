@@ -21,6 +21,7 @@ namespace FantasyScrumBoard.BE.Shared.Models
         public virtual ICollection<UserAchievement> UserAchievements { get; set; }
         public virtual ICollection<UserProject> UserProjects { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Sprint> SprintsMvp { get; set; }
 
     }
 }

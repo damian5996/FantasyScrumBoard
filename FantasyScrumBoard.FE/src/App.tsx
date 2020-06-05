@@ -8,6 +8,7 @@ import { withLazy } from 'shared/utils';
 
 const LoginView = withLazy(() => import('views/login'));
 const ProjectBoardView = withLazy(() => import('views/project-board'));
+const GraphView = withLazy(() => import('views/graph-view'));
 
 const App = () => {
   return (
@@ -29,6 +30,8 @@ const App = () => {
           redirect="/login"
           component={ProjectBoardView}
         />
+
+        <ProtectedRoute exact path="/graph" redirect="/login" component={GraphView} />
 
         <Route path="**" render={() => <div>Not Found Page </div>} />
       </Switch>

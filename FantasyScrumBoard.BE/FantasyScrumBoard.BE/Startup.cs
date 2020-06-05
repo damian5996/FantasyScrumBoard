@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FantasyScrumBoard.BE.BL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,10 +25,22 @@ namespace FantasyScrumBoard.BE
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
+        {   
             services.AddControllers();
-        }
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1",
+                    new Microsoft.OpenApi.Models.OpenApiInfo
+                    {
+                        Title = "Fantasy Scrum Board API",
+                        Version = "v1"
+                    });
+            });
+
+            services.BusinessLogicConfigureServices(Configuration);
+        }   
+            
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -35,6 +48,15 @@ namespace FantasyScrumBoard.BE
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.BusinessLogicConfigure();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Fantasy Scrum Board API v1");
+            });
 
             app.UseHttpsRedirection();
 

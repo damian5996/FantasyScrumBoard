@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { withLazy } from 'shared/utils';
 
 const ProjectBoardView = withLazy(() => import('views/project-board'));
+const GraphView = withLazy(() => import('views/graph-view'));
 
 const App = () => {
   return (
@@ -23,6 +24,13 @@ const App = () => {
           path="/project/:id/board"
           component={ProjectBoardView}
         />
+        
+        <Route 
+        exact
+        path="/graph"
+        component={GraphView}
+        />
+
         <Route path="**" render={() => <div>Not Found Page </div>} />
       </Switch>
     </BrowserRouter>

@@ -14,8 +14,8 @@ namespace FantasyScrumBoard.BE.Shared.Dto
         public DateTime CreatedAt { get; set; }
         public DateTime? EditedAt { get; set; }
 
-        public virtual IEnumerable<SprintDto> Sprints { get; set; }
-        public virtual IEnumerable<WorkItemDto> WorkItems { get; set; }
-        public virtual IEnumerable<ProjectMemberDto> ProjectMembers { get; set; }
+        public IEnumerable<SprintDto> Sprints { get; set; }
+        public IEnumerable<WorkItemDto> WorkItems { get; set; }
+        public IEnumerable<ProjectMemberDto> ProjectMembers { get; set; }
     }
 }

@@ -20,21 +20,24 @@ class AuthProvider extends React.Component<AuthProviderProps, AuthProviderState>
 
       this.setState({ ...INIT_STATE, isAuthorized: true, user }, () => {
         localStorage.setItem('user', JSON.stringify(user));
-        this.props.history.push('/dashboard');
+        this.props.history.push('/main/dashboard');
       });
     } catch {
       this.setState({ ...INIT_STATE });
     }
   };
 
-  isAuthorized = () => {
+  getInitData = () => {
     const user = localStorage.getItem('user');
-    return !!user;
+    return {
+      user: JSON.parse(user),
+      isAuthorized: !!user
+    };
   };
 
   readonly state: AuthProviderState = {
     ...INIT_STATE,
-    isAuthorized: this.isAuthorized(),
+    ...this.getInitData(),
     logIn: this.logIn,
     init: this.init
   };

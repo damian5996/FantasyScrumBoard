@@ -6,3 +6,4 @@ export * from './tasks';
 export * from './dashboard';
 export * from './achievements';
 export * from './auth';
+export * from './sprints';

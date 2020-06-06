@@ -3,6 +3,11 @@ import { RouteChildrenProps } from 'react-router';
 
 import { ProjectDetails, getProjectDetails } from 'api';
 
+import { ProjectTeam } from '.';
+
+import csx from './ProjectDetails.scss';
+import { CircularProgress } from '@material-ui/core';
+
 interface ProjectDetailsProps extends RouteChildrenProps<{ id: string }> {}
 
 const ProjectDetails = ({ match }: ProjectDetailsProps) => {
@@ -28,11 +33,22 @@ const ProjectDetails = ({ match }: ProjectDetailsProps) => {
     handleGetProjectDetails(+match.params.id);
   }, []);
 
-  if (isLoading) return <div>Loading project details...</div>;
-  if (projectDetails === null && !isLoading) return <div>No details</div>;
-  
-  console.log(projectDetails);
-  return <div>siema szczegoly projektu here</div>;
+  return (
+    <div className={csx.projectDetails}>
+      {isLoading ? (
+        <div className={csx.loader}>
+          <CircularProgress color="secondary" />
+        </div>
+      ) : (
+        <>
+          <h2>
+            <span>PROJECTS / Project name</span>
+          </h2>
+          <ProjectTeam />
+        </>
+      )}
+    </div>
+  );
 };
 
 export default ProjectDetails;

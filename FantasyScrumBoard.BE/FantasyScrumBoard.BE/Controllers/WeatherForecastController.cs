@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FantasyScrumBoard.BE.BL.Services.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -18,9 +21,12 @@ namespace FantasyScrumBoard.BE.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        private readonly IJwtService _jwtService;
+
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IJwtService jwtService)
         {
             _logger = logger;
+            _jwtService = jwtService;
         }
 
         [HttpGet]
@@ -34,6 +40,25 @@ namespace FantasyScrumBoard.BE.Controllers
                 Summary = Summaries[rng.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+
+        [HttpGet("token")]
+        public IActionResult Token()
+        {
+            return Ok(_jwtService.GenerateToken(null));
+        }
+
+        [HttpPost("refresh")]
+        public async Task<IActionResult> Refresh([FromBody]string refresh)
+        {
+            return Ok(await _jwtService.RefreshToken(refresh));
+        }
+
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpGet("test")]
+        public IActionResult Test()
+        {
+            return Ok();
         }
     }
 }

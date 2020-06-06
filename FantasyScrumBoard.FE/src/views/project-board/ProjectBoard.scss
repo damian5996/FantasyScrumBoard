@@ -5,38 +5,53 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background: $gradientPrimary;
 
   .projectTasks {
     display: grid;
     justify-content: center;
-    grid-template-columns: 250px 250px 250px 250px 250px;
+    grid-template-columns: 300px 300px 300px 300px 300px;
     grid-gap: 30px;
 
-    .tasks {
-      width: 250px;
-      padding: 18px;
-      // opacity: 0;
-      animation: 0.3s animate-in ease-in-out;
-
-      @keyframes animate-in {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
+    .boardColumn {
+      p {
+        font-size: 24px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.44;
+        letter-spacing: normal;
+        color: $white;
+        margin-bottom: 18px;
       }
 
-      @for $i from 1 to 10 {
-        &:nth-child(#{$i}) {
-          animation-delay: $i * 0.25s;
-        }
-      }
+      .tasks {
+        padding: 18px;
+        border-radius: 4px;
+        box-shadow: $shadowPrimary;
+        background: $white;
+        height: 600px;
+        overflow-y: auto;
 
-      .task {
-        user-select: 'none';
-        padding: 10px;
-        margin: 0 0 10px 0;
+        .task {
+          user-select: 'none';
+          padding: 10px;
+          margin: 0 0 10px 0;
+          display: flex;
+          flex-flow: column;
+
+          .name {
+            font-size: 20px;
+            display: block;
+            margin-bottom: 8px;
+          }
+
+          .description {
+            font-size: 16px;
+            display: block;
+            line-height: 22px;
+          }
+        }
       }
     }
   }

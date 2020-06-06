@@ -1,0 +1,18 @@
+@import 'styles/mixins';
+
+.mainView {
+  background: $gradientPrimary;
+  min-height: 100vh;
+
+  .fluid {
+    margin: 0 auto;
+    width: calc(240px + 1168px);
+    display: flex;
+
+    .content {
+      background-color: rgba(0, 0, 0, 0.2);
+      min-height: 100vh;
+      width: 1168px;
+    }
+  }
+}

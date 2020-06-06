@@ -1,54 +1,42 @@
 import React from 'react';
 import { withRouter } from 'react-router';
+import { ReactFacebookLoginInfo } from 'react-facebook-login';
 
 import { INIT_STATE, AuthProviderState, AuthProviderProps, AuthContext } from '.';
+import { logInFb } from 'api';
 
 class AuthProvider extends React.Component<AuthProviderProps, AuthProviderState> {
-  componentDidMount() {}
+  init = () => {
+    const { isPending } = this.state;
 
-  // authorize = async () => {
-  //   const { isPending } = this.state;
+    if (!isPending) {
+      this.setState({ ...INIT_STATE, isPending: true });
+    }
+  };
 
-  //   if (!isPending) {
-  //     this.setState({ ...INIT_STATE, isPending: true });
-  //   }
+  logIn = async (data: ReactFacebookLoginInfo) => {
+    try {
+      const user = await logInFb({ token: data.accessToken });
 
-  //   try {
-  //     const user = await getAuthorizedUser();
-  //     this.setState({ ...INIT_STATE, isAuthorized: true, user });
-  //   } catch {
-  //     this.setState({ ...INIT_STATE });
-  //   }
-  // };
+      this.setState({ ...INIT_STATE, isAuthorized: true, user }, () => {
+        localStorage.setItem('user', JSON.stringify(user));
+        this.props.history.push('/dashboard');
+      });
+    } catch {
+      this.setState({ ...INIT_STATE });
+    }
+  };
 
-  // logIn = async (credentials: LogInPayload) => {
-  //   const { isPending } = this.state;
-
-  //   if (!isPending) {
-  //     this.setState({ ...INIT_STATE, isPending: true });
-  //   }
-
-  //   try {
-  //     const user = await logIn(credentials);
-  //     this.setState({ ...INIT_STATE, isAuthorized: true, user }, () => {
-  //       this.props.history.replace('/app');
-  //     });
-  //   } catch (error) {
-  //     this.setState({ ...INIT_STATE, error });
-  //   }
-  // };
-
-  // logOut = async () => {
-  //   try {
-  //     await logOut();
-  //     this.setState({ ...INIT_STATE });
-  //   } catch (error) {
-  //     this.setState({ error });
-  //   }
-  // };
+  isAuthorized = () => {
+    const user = localStorage.getItem('user');
+    return !!user;
+  };
 
   readonly state: AuthProviderState = {
-    ...INIT_STATE
+    ...INIT_STATE,
+    isAuthorized: this.isAuthorized(),
+    logIn: this.logIn,
+    init: this.init
   };
 
   render() {

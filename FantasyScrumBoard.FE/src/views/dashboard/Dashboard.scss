@@ -1,27 +1,23 @@
 @import 'styles/mixins';
 
-.dashboard {
+$buttonHeaderColor: #1a006c;
+$unActiveButtonHeader: rgba(26, 0, 108, 0.4);
+
+.dashboardWrapper {
   display: flex;
   justify-content: center;
-  width: 100%;
-  min-height: 100vh;
-  background: $gradientPrimary;
+  flex-flow: column;
+  padding: 48px;
 
-  .dashboardWrapper {
+  .header {
     display: flex;
-    max-width: 1300px;
-    background-color: rgba(0, 0, 0, 0.2);
+    font-weight: normal;
+    margin-bottom: 39px;
+    font-size: 24px;
+  }
 
-    .header {
-      display: flex;
-      font-weight: normal;
-      margin-bottom: 39px;
-      font-size: 24px;
-    }
-
-    .headerActive {
-      font-weight: bold;
-    }
+  .headerActive {
+    font-weight: bold;
   }
 }
 
@@ -37,8 +33,9 @@
   div:first-child {
     margin-right: 16px;
   }
-  
-  div:not(:first-child), div:not(:last-child) {
+
+  div:not(:first-child),
+  div:not(:last-child) {
     margin-left: 16px;
     margin-right: 16px;
   }
@@ -57,4 +54,22 @@
   font-weight: normal !important;
   height: 40px;
   box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.5);
+}
+
+.buttonHeader {
+  color: white !important;
+  padding: 16px !important;
+  margin: 0 !important;
+  border-radius: 8px !important;
+  height: 48px;
+}
+
+.activeButton {
+  background-color: $buttonHeaderColor !important;
+  font-weight: bold;
+}
+
+.unActiveButton {
+  background-color: $unActiveButtonHeader !important;
+  font-weight: normal !important;
 }

@@ -9,6 +9,11 @@ using FantasyScrumBoard.BE.Shared.Enums;
 using FantasyScrumBoard.BE.Shared.Exceptions;
 using FantasyScrumBoard.BE.Shared.Extensions;
 using FantasyScrumBoard.BE.Shared.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace FantasyScrumBoard.BE.DataAccess.Repositories
@@ -48,6 +53,13 @@ namespace FantasyScrumBoard.BE.DataAccess.Repositories
                                            throw new BusinessLogicException(
                                                string.Format(Constants.ErrorMessage.NotFoundTemplate,
                                                    nameof(_db.Project), projectId), ExceptionType.BadRequest));
+        }
+
+        public async Task<IEnumerable<ProjectDto>> GetListByUserIdAsync(long userId)
+        {
+            var projects = await _db.Project.Where(x => x.UserProjects.Any(up => up.UserId == userId)).ToListAsync();
+
+            return _mapper.Map<IEnumerable<ProjectDto>>(projects);
         }
 
         private async Task<Project> FillNavigationProperties(Project project, ProjectDto projectDto)

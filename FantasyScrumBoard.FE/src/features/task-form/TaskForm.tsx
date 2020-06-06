@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 
-import { WorkItem } from 'api';
+import { WorkItem, addWorkItem } from 'api';
 
-import { useForm, FormConfig, req, min, max, date, nmb } from 'shared/forms';
+import { useForm, FormConfig, req, min, max, nmb } from 'shared/forms';
 
-import { Modal, Field, TextareaField, Button, DateField, Select } from 'shared/ui';
+import { Modal, Field, TextareaField, Button } from 'shared/ui';
 
 import csx from './TaskForm.scss';
 
-const taskStatusesLabels = ['To do', 'In progress', 'Code review', 'Testing', 'Done'];
-
 interface TaskFormProps {
+  sprintId: number;
+  projectId: number;
   data: WorkItem | null;
   onClose(): void;
 }
@@ -18,16 +18,6 @@ interface TaskFormProps {
 const config: FormConfig = [
   { label: 'Name', validators: [req, min(2), max(100)] },
   { label: 'Description', validators: [min(2), max(1000)] },
-  {
-    label: 'Status',
-    value: [
-      { id: 0, label: 'To do', value: false },
-      { id: 1, label: 'In progress', value: false },
-      { id: 2, label: 'Code review', value: false },
-      { id: 3, label: 'Testing', value: false },
-      { id: 4, label: 'Done', value: false }
-    ]
-  },
   { label: 'Story points', validators: [req, nmb] }
 ];
 
@@ -41,7 +31,7 @@ const getConfig = (data: WorkItem | null) => {
   return config;
 };
 
-const TaskForm = ({ onClose, data }: TaskFormProps) => {
+const TaskForm = ({ onClose, data, sprintId, projectId }: TaskFormProps) => {
   const [isPending, setIsPending] = useState(false);
 
   const [{ fields, isDirty, isInvalid }, change, directChange, submit] = useForm(getConfig(data));
@@ -69,7 +59,15 @@ const TaskForm = ({ onClose, data }: TaskFormProps) => {
     }
 
     try {
-      // await addProject();
+      const [{ value: name }, { value: description }, { value: storyPoints }] = fields;
+
+      await addWorkItem({
+        name,
+        description,
+        storyPoints: +storyPoints,
+        project: projectId,
+        sprint: sprintId
+      });
 
       setIsPending(false);
     } catch (err) {
@@ -78,7 +76,7 @@ const TaskForm = ({ onClose, data }: TaskFormProps) => {
   };
 
   return (
-    <Modal onClose={onClose}>
+    <Modal onClose={onClose} isLoading={isPending}>
       <form className={csx.taskForm} onSubmit={handleSubmit}>
         <p>Add new task</p>
 
@@ -103,25 +101,13 @@ const TaskForm = ({ onClose, data }: TaskFormProps) => {
         />
 
         <div className={csx.formField}>
-          <Select
-            label="Status *"
-            placeholder="Select your template status..."
-            items={fields[2].value}
-            error={isDirty ? fields[2].error : ''}
-            onSelect={(e, value) => {
-              updateStatus(e, 2, value);
-            }}
-          />
-        </div>
-
-        <div className={csx.formField}>
           <Field
-            data-idx={3}
+            data-idx={2}
             className={csx.formField}
             label="Story points *"
             placeholder="Type your story points..."
-            error={isDirty ? fields[3].error : ''}
-            value={fields[3].value}
+            error={isDirty ? fields[2].error : ''}
+            value={fields[2].value}
             onChange={change}
           />
         </div>

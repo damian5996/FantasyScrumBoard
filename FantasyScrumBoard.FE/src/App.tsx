@@ -20,7 +20,7 @@ const App = () => {
 
           <Route path="/main" component={MainView} />
 
-          <Route exact path="/project/:id/board" component={ProjectBoardView} />
+          <Route exact path="/project/:projectId/:sprintId/board" component={ProjectBoardView} />
 
           <Route exact path="/graph" component={GraphView} />
 

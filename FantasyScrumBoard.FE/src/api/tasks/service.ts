@@ -1,4 +1,6 @@
 import { WorkItem } from 'api';
+import { coreInstance } from '../config';
+import { call } from '../utils';
 
 const getItems = (count, offset = 0): WorkItem[] =>
   Array.from({ length: count }, (v, k) => k).map(k => ({
@@ -28,4 +30,8 @@ export const getWorkItemsDashboard = (): Promise<WorkItem[]> => {
       resolve(getItems(10));
     }, 1500);
   });
+};
+
+export const addWorkItem = (workItem: any) => {
+  return call<WorkItem>(coreInstance.post('WorkItem', workItem));
 };

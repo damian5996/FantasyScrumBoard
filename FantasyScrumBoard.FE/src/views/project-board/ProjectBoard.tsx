@@ -43,7 +43,7 @@ const getItemStyle = (isDragging, draggableStyle) => ({
   ...draggableStyle
 });
 
-function ProjectBoardView() {
+function ProjectBoardView({ match }) {
   const [taskFormData, setTaskFormData] = useState({
     isOpen: false,
     data: null
@@ -150,6 +150,8 @@ function ProjectBoardView() {
       {taskFormData.isOpen && (
         <AddTaskForm
           data={taskFormData.data}
+          projectId={+match.params.projectId}
+          sprintId={+match.params.sprintId}
           onClose={() => {
             setTaskFormData({
               isOpen: false,

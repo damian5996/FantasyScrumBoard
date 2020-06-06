@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 
-import { ProjectTile, CurrentTasks, LatestNews, DataWrapper } from '.';
+import ProjectForm from 'features/project-form'
+;
+import { Button, CircularProgress } from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
+
+import { ProjectTile, CurrentTasks, LatestNews, DataWrapper, Sidebar } from '.';
 
 import { getProjects, WorkItem, getWorkItemsDashboard, News, getNews, Project } from 'api';
 
 import csx from './Dashboard.scss';
-import ProjectForm from 'features/project-form';
-import { Button } from 'shared/ui';
 
 const INIT_STATE: DataWrapper<any> = {
   isLoading: false,
@@ -97,7 +100,7 @@ const Dashboard = () => {
   };
 
   const startProjectEdit = (id: number) => {
-    const project = projects.data.find(p => p.id === id);
+    const project = projects.data.find((p) => p.id === id);
 
     setProjectFormData({ isOpen: true, data: project });
   };
@@ -122,54 +125,66 @@ const Dashboard = () => {
         />
       )}
 
-      <div>
-        <section>
-          <h1>
-            <span>PROJECTS</span>
-            <Button
-              onClick={() => {
-                setProjectFormData({
-                  isOpen: true,
-                  data: null
-                });
-              }}
-            >
-              ADD PROJECT
-            </Button>
-          </h1>
-          <div className={csx.projects}>
-            {projects.isLoading && 'Loading projects'}
-            {projects.data.length > 0 &&
-              projects.data.map(project => {
-                return (
-                  <ProjectTile
-                    key={project.id}
-                    id={project.id}
-                    name={project.name}
-                    onEdit={startProjectEdit}
-                  />
-                );
-              })}
-          </div>
-        </section>
+      <div className={csx.dashboard}>
+        <div className={csx.dashboardWrapper}>
+          <Sidebar />
+          <div style={{ marginLeft: '88px', marginTop: '138px', marginRight: '88px' }}>
+            <section>
+              <h1>
+                <span>PROJECTS</span>
+                <Button
+                  onClick={() => {
+                    setProjectFormData({
+                      isOpen: true,
+                      data: null
+                    });
+                  }}
+                  style={{backgroundColor: '#d30000', marginLeft: '10px', color: 'white'}}
+                >
+                  <AddIcon />
+                </Button>
+              </h1>
+              <div className={csx.projects}>
+                {projects.isLoading && <CircularProgress color="secondary" />}
+                {projects.data.length > 0 &&
+                  projects.data.map((project) => {
+                    return (
+                      <ProjectTile
+                        key={project.id}
+                        id={project.id}
+                        name={project.name}
+                        onEdit={startProjectEdit}
+                      />
+                    );
+                  })}
+              </div>
+            </section>
 
-        <section>
-          <h1>CURRENT TASKS / MY TASKS</h1>
-          <div className={csx.center}>
-            {workItems.isLoading && 'Loading current tasks'}
-            {workItems.data.length > 0 && <CurrentTasks workItems={workItems.data} />}
-          </div>
-          {!workItems.isLoading && <button>LOAD MORE</button>}
-        </section>
+            <section>
+              <div className={csx.header} style={{ marginTop: '49px' }}>
+                <span className={csx.headerActive}>CURRENT TASKS&nbsp;</span>{' '}
+                <span>&nbsp;/&nbsp;</span> <span>&nbsp;MY TASKS</span>
+              </div>
+              <div className={csx.center}>
+                {workItems.isLoading && <CircularProgress color="secondary" />}
+                {workItems.data.length > 0 && <CurrentTasks workItems={workItems.data} />}
+              </div>
+              {!workItems.isLoading && <Button className={csx.button}>More tasks</Button>}
+            </section>
 
-        <section>
-          <h1>LATEST NEWS</h1>
-          <div className={csx.center}>
-            {news.isLoading && 'Loading latest news'}
-            {news.data.length > 0 && <LatestNews news={news.data} />}
+            <section>
+              <div className={csx.header} style={{ marginTop: '49px' }}>
+                <span className={csx.headerActive}>LATEST NEWS&nbsp;</span>{' '}
+                <span>&nbsp;/&nbsp;</span> <span>&nbsp;ACHIEVEMENTS</span>
+              </div>
+              <div className={csx.center}>
+                {news.isLoading && <CircularProgress color="secondary" />}
+                {news.data.length > 0 && <LatestNews news={news.data} />}
+              </div>
+              {!news.isLoading && <Button className={csx.button}>More news</Button>}
+            </section>
           </div>
-          {!news.isLoading && <button>LOAD MORE</button>}
-        </section>
+        </div>
       </div>
     </>
   );

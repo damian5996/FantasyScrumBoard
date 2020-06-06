@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { UnprotectedRoute, ProtectedRoute } from 'features/auth';
 
 import { withLazy } from 'shared/utils';
-import ProjectForm from 'features/project-form';
+// import ProjectForm from 'features/project-form';
 
 const LoginView = withLazy(() => import('views/login'));
 const ProjectBoardView = withLazy(() => import('views/project-board'));

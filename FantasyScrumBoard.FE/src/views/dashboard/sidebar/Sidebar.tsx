@@ -28,6 +28,12 @@ interface UserInfoList {
 
 export const Sidebar = () => {
   const [activeLink, setActiveLink] = useState('Main');
+  const [open, setOpen] = useState(true);
+
+  const handleClick = () => {
+    setOpen(!open);
+  };
+
   const handleChangeLink = (event: any, link: string) => setActiveLink(link);
 
   return (
@@ -38,7 +44,16 @@ export const Sidebar = () => {
           <p className={csx.userLogin}>USERNAME</p>
 
           <p style={{ textAlign: 'center' }}>{USER_INFO[0].label}</p>
-          <p style={{ textAlign: 'center', fontWeight: 'bold', marginTop: '24px', marginBottom: '8px' }}>POINTS</p>
+          <p
+            style={{
+              textAlign: 'center',
+              fontWeight: 'bold',
+              marginTop: '24px',
+              marginBottom: '8px'
+            }}
+          >
+            POINTS
+          </p>
 
           <ul>
             <li className={csx.listElement}>
@@ -48,21 +63,22 @@ export const Sidebar = () => {
               <span>{USER_INFO[2].icon}</span> <span>{USER_INFO[2].label}</span>
             </li>
           </ul>
-
         </div>
       </section>
 
       <nav className={csx.nav}>
         <ul>
-          {SIDEBAR_LINKS.map((link) => (
-            <li
-              key={link}
-              className={`${csx.link} ${activeLink === link ? csx.linkActive : ''}`}
-              onClick={(event) => handleChangeLink(event, link)}
-            >
-              {link.toLocaleUpperCase()}
-            </li>
-          ))}
+          {SIDEBAR_LINKS.map((link) => {
+            return (
+              <li
+                key={link}
+                className={`${csx.link} ${activeLink === link ? csx.linkActive : ''}`}
+                onClick={(event) => handleChangeLink(event, link)}
+              >
+                {link.toLocaleUpperCase()}
+              </li>
+            );
+          })}
         </ul>
       </nav>
     </div>

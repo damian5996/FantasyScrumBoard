@@ -24,3 +24,24 @@ $unActiveButtonHeader: rgba(26, 0, 108, 0.4);
     width: 150px;
   }
 }
+
+
+.sprints {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  div {
+    margin-top: 10px;
+  }
+
+  div:first-child {
+    margin-right: 16px;
+  }
+
+  div:not(:first-child),
+  div:not(:last-child) {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+}

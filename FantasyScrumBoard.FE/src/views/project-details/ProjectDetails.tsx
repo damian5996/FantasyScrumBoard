@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { RouteChildrenProps } from 'react-router';
 
-import { ProjectDetails, getProjectDetails } from 'api';
+import { ProjectDetails, getProjectDetails, Sprint } from 'api';
 
 import { ProjectTeam, ProjectSprints } from '.';
 

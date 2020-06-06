@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using FantasyScrumBoard.BE.DataAccess.Connection;
 using FantasyScrumBoard.BE.DataAccess.Repositories.Interfaces;
-using FantasyScrumBoard.BE.Shared.Constants;
+using FantasyScrumBoard.BE.Shared;
 using FantasyScrumBoard.BE.Shared.Dto;
 using FantasyScrumBoard.BE.Shared.Enums;
 using FantasyScrumBoard.BE.Shared.Exceptions;

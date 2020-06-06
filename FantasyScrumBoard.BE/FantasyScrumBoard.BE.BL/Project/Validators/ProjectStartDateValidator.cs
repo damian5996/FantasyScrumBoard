@@ -1,6 +1,6 @@
 ﻿using FantasyScrumBoard.BE.BL.Common;
 using FantasyScrumBoard.BE.Shared.BindingModels;
-using FantasyScrumBoard.BE.Shared.Constants;
+using FantasyScrumBoard.BE.Shared;
 using FantasyScrumBoard.BE.Shared.Enums;
 using FantasyScrumBoard.BE.Shared.Exceptions;
 using System;

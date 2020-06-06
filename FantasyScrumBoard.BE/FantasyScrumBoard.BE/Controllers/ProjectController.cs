@@ -1,8 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using FantasyScrumBoard.BE.BL.Project.Interfaces;
 using FantasyScrumBoard.BE.Shared.BindingModels;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 
 namespace FantasyScrumBoard.BE.Controllers
 {

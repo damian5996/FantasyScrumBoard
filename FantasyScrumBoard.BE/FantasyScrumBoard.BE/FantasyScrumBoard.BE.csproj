@@ -17,8 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FantasyScrumBoard.BE.BL\FantasyScrumBoard.BE.BL.csproj" />
-    <ProjectReference Include="..\FantasyScrumBoard.BE.Shared\FantasyScrumBoard.BE.Shared.csproj" />
   </ItemGroup>
-
 
 </Project>

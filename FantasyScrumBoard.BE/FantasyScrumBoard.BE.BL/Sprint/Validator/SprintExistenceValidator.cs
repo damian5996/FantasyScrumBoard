@@ -5,11 +5,12 @@ using System.Text;
 using FantasyScrumBoard.BE.BL.Common;
 using FantasyScrumBoard.BE.DataAccess;
 using FantasyScrumBoard.BE.Shared;
+using FantasyScrumBoard.BE.Shared.BindingModels;
 using FantasyScrumBoard.BE.Shared.Exceptions;
 
 namespace FantasyScrumBoard.BE.BL.Sprint.Validator
 {
-    public class SprintExistenceValidator : IValidator<long>
+    public class SprintExistenceValidator : IValidator<long>, IValidator<WorkItemAddBindingModel>
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -21,6 +22,15 @@ namespace FantasyScrumBoard.BE.BL.Sprint.Validator
         public void Validate(long param)
         {
             ValidateSprintExistenceById(param);
+        }
+
+        public void Validate(WorkItemAddBindingModel param)
+        {
+            if (param.Sprint == null)
+            {
+                return;
+            }
+            ValidateSprintExistenceById((long)param.Sprint);
         }
 
         private void ValidateSprintExistenceById(long sprintId)

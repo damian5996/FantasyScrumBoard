@@ -52,14 +52,14 @@ namespace FantasyScrumBoard.BE.Shared.Models.EntityConfig
                 .HasOne(workItem => workItem.Sprint)
                 .WithMany(sprint => sprint.WorkItems)
                 .HasForeignKey(workItem => workItem.SprintId)
-                .IsRequired()
+                .IsRequired(false)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder
                 .HasOne(workItem => workItem.AssignedUser)
                 .WithMany(assignedUser => assignedUser.WorkItems)
                 .HasForeignKey(workItem => workItem.AssignedUserId)
-                .IsRequired()
+                .IsRequired(false)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder

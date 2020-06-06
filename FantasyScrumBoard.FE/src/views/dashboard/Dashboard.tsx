@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import ProjectForm from 'features/project-form'
-;
+import ProjectForm from 'features/project-form';
 import { Button, CircularProgress } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 
@@ -26,6 +25,10 @@ const Dashboard = () => {
   const [projects, setProjects] = useState<DataWrapper<Project>>(INIT_STATE);
   const [workItems, setWorkItems] = useState<DataWrapper<WorkItem>>(INIT_STATE);
   const [news, setNews] = useState<DataWrapper<News>>(INIT_STATE);
+
+  const [viewProjects, setViewProjects] = useState(true);
+  const [viewTasks, setViewTasks] = useState(true);
+  const [viewNews, setViewNews] = useState(true);
 
   const handleGetProjects = async () => {
     if (!projects.isLoading) {
@@ -126,11 +129,30 @@ const Dashboard = () => {
       )}
 
       <div className={csx.dashboard}>
+        <Sidebar />
         <div className={csx.dashboardWrapper}>
-          <Sidebar />
           <div style={{ marginLeft: '88px', marginTop: '138px', marginRight: '88px' }}>
             <section>
-              <h1>
+              <div className={csx.header}>
+                <Button
+                  onClick={() => setViewProjects(true)}
+                  className={`${csx.buttonHeader} ${
+                    viewProjects ? csx.activeButton : csx.unActiveButton
+                  }`}
+                >
+                  PROJECTS
+                </Button>
+                <Button
+                  onClick={() => setViewProjects(false)}
+                  className={`${csx.buttonHeader} ${
+                    !viewProjects ? csx.activeButton : csx.unActiveButton
+                  }`}
+                  style={{ marginLeft: '40px' }}
+                >
+                  ALL PROJECTS
+                </Button>
+              </div>
+              {/* <h1>
                 <span>PROJECTS</span>
                 <Button
                   onClick={() => {
@@ -143,7 +165,7 @@ const Dashboard = () => {
                 >
                   <AddIcon />
                 </Button>
-              </h1>
+              </h1> */}
               <div className={csx.projects}>
                 {projects.isLoading && <CircularProgress color="secondary" />}
                 {projects.data.length > 0 &&
@@ -162,8 +184,23 @@ const Dashboard = () => {
 
             <section>
               <div className={csx.header} style={{ marginTop: '49px' }}>
-                <span className={csx.headerActive}>CURRENT TASKS&nbsp;</span>{' '}
-                <span>&nbsp;/&nbsp;</span> <span>&nbsp;MY TASKS</span>
+                <Button
+                  onClick={() => setViewTasks(true)}
+                  className={`${csx.buttonHeader} ${
+                    viewTasks ? csx.activeButton : csx.unActiveButton
+                  }`}
+                >
+                  TASKS
+                </Button>
+                <Button
+                  onClick={() => setViewTasks(false)}
+                  className={`${csx.buttonHeader} ${
+                    !viewTasks ? csx.activeButton : csx.unActiveButton
+                  }`}
+                  style={{ marginLeft: '40px' }}
+                >
+                  MY TASKS
+                </Button>
               </div>
               <div className={csx.center}>
                 {workItems.isLoading && <CircularProgress color="secondary" />}
@@ -174,8 +211,23 @@ const Dashboard = () => {
 
             <section>
               <div className={csx.header} style={{ marginTop: '49px' }}>
-                <span className={csx.headerActive}>LATEST NEWS&nbsp;</span>{' '}
-                <span>&nbsp;/&nbsp;</span> <span>&nbsp;ACHIEVEMENTS</span>
+                <Button
+                  onClick={() => setViewNews(true)}
+                  className={`${csx.buttonHeader} ${
+                    viewNews ? csx.activeButton : csx.unActiveButton
+                  }`}
+                >
+                  LATEST NEWS
+                </Button>
+                <Button
+                  onClick={() => setViewNews(false)}
+                  className={`${csx.buttonHeader} ${
+                    !viewNews ? csx.activeButton : csx.unActiveButton
+                  }`}
+                  style={{ marginLeft: '40px' }}
+                >
+                  ACHIEVEMENTS
+                </Button>
               </div>
               <div className={csx.center}>
                 {news.isLoading && <CircularProgress color="secondary" />}

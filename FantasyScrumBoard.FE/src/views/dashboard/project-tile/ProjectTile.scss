@@ -1,38 +1,43 @@
-@import 'styles/palette';
-
 .projectTile {
   display: flex;
   flex-flow: column;
   align-items: center;
   justify-content: space-between;
   text-align: center;
+  position: relative;
   width: 152px;
   height: 152px;
   border-radius: 8px;
-  border: solid 1px #979797;
-  background-color: #ffffff;
+  background-color: #5e0042;
   color: #000;
-  
+
   h3 {
-    margin-top: 50px;
+    margin-top: 20px;
     font-weight: normal;
+    color: white;
   }
-
-  span {
-    display: flex;
+  div {
     width: 100%;
-    justify-content: space-around;
-    button {
-      background-color: rgba(#d30000, 0.6);
-      width: 40px;
-      height: 40px;
-      padding: 0 !important;
-      box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.5);
-      margin-bottom: 8px;
-    }
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 
-    button:hover {
-      background-color: #d30000;
+    span {
+      display: flex;
+      justify-content: space-around;
+      align-content: center;
+      padding: 8px;
+      button {
+        background: rgba(#d30000, 1) !important;
+        width: 40px;
+        height: 40px;
+        padding: 0 !important;
+        box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.5);
+        z-index: 2;
+      }
+
+      button:hover {
+        background-color: #d30000;
+      }
     }
   }
 }

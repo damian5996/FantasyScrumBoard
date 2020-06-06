@@ -1,5 +1,7 @@
 import { ProjectDetails } from '.';
 import { Sprint, User, Project } from 'api';
+import { call } from '..';
+import { coreInstance } from '../config';
 
 const createSprint = (id: number): Sprint => {
   return {
@@ -46,12 +48,8 @@ export const getProjectDetails = (projectId: number): Promise<ProjectDetails> =>
   });
 };
 
-export const addProject = (): Promise<Project> => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(null);
-    }, 1500);
-  });
+export const addProject = (project: Partial<Project>) => {
+  return call<Project>(coreInstance.post('Project', project));
 };
 
 export const editProject = (): Promise<Project> => {
@@ -61,4 +59,3 @@ export const editProject = (): Promise<Project> => {
     }, 1500);
   });
 };
-

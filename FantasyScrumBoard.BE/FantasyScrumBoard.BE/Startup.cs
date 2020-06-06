@@ -11,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Text;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FantasyScrumBoard.BE
 {
@@ -81,6 +82,11 @@ namespace FantasyScrumBoard.BE
             services
                 .SharedConfigureServices(Configuration)
                 .BusinessLogicConfigureServices(Configuration);
+
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.SuppressModelStateInvalidFilter = true;
+            });
         }   
             
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

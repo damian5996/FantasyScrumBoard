@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { RouteChildrenProps } from 'react-router';
 
-import { ProjectDetails, getProjectDetails } from 'api';
+import { CircularProgress } from '@material-ui/core';
+
+import { ProjectDetails, getProjectDetails, Sprint } from 'api';
+
+import SprintForm from 'features/sprint-form';
 
 import { ProjectTeam, ProjectSprints } from '.';
 
 import csx from './ProjectDetails.scss';
-import { CircularProgress } from '@material-ui/core';
-import SprintForm from 'features/sprint-form';
+
 
 interface ProjectDetailsProps extends RouteChildrenProps<{ id: string }> {}
 

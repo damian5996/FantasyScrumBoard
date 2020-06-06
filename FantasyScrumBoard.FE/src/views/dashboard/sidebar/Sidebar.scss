@@ -1,0 +1,100 @@
+.sidebar {
+  width: 240px;
+  position: relative;
+
+  .userSection {
+    height: 244px;
+    border-radius: 16px;
+    box-shadow: 0 15px 19px -10px rgba(0, 0, 0, 0.5);
+    background-color: #1c0030;
+    margin-top: 120px;
+
+    .userInfo {
+      position: absolute;
+      top: 200px;
+      width: 100%;
+
+      .userLogin {
+        font-size: 18px;
+        color: #fff;
+        text-align: center;
+        width: 100%;
+      }
+
+      .listElement {
+        display: flex;
+        align-items: center;
+        
+        span:first-child {
+          width: 24px;
+          height: 24px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: white;
+          border-radius: 50%;
+          color: #444041;
+        }
+
+        span:last-child {
+          margin-left: 8px;
+        }
+        
+      }
+
+      .listElement:first-child {
+        margin-top: 27px;
+      }
+
+      .listElement:not(:first-child) {
+        margin-top: 16px;
+      }
+    }
+
+    .avatar {
+      width: 136px;
+      height: 136px;
+      box-shadow: inset 0 15px 33px 14px rgba(0, 0, 0, 0.5);
+      border: solid 4px #d30000;
+      border-radius: 16px;
+      position: absolute;
+      left: 52px;
+      top: 44px;
+    }
+  }
+
+  .nav {
+    width: 240px;
+    border-radius: 16px;
+    box-shadow: 0 15px 19px -10px rgba(0, 0, 0, 0.5);
+    background-color: #1c0030;
+    margin-top: 17px;
+
+    .link {
+      padding-left: 16px;
+      padding-top: 28px;
+      padding-bottom: 28px;
+      text-transform: capitalize;
+      transition: 0.3s background-color;
+    }
+    
+    .link:hover {
+      background-color: #250944;
+    }
+
+    .link:first-child {
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+    }
+
+    .link:last-child {
+      border-bottom-left-radius: 16px;
+      border-bottom-right-radius: 16px;
+    }
+
+    .linkActive {
+      background-color: #250944;
+    }
+  }
+  
+}

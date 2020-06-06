@@ -3,6 +3,12 @@ import { Link } from 'react-router-dom';
 
 import EditIcon from '@material-ui/icons/Edit';
 
+import { IconButton } from '@material-ui/core';
+
+import { BoardIcon, MapIcon } from 'shared/icons';
+
+
+
 import csx from './ProjectTile.scss';
 
 interface ProjectTileProps {
@@ -16,11 +22,18 @@ export const ProjectTile = ({ name, id, onEdit }: ProjectTileProps) => {
     <div className={csx.projectTile}>
       <h3>{name}</h3>
 
-      <EditIcon onClick={() => onEdit(id)} />
-
       <span>
-        <Link to={`project/${id}/board`}>BOARD</Link>
-        <button>MAP</button>
+        <Link to={`project/${id}/board`}>
+          <IconButton color="secondary">
+            <BoardIcon />
+          </IconButton>
+        </Link>
+        <IconButton style={{ color: 'white' }} onClick={() => onEdit(id)}>
+          <EditIcon />
+        </IconButton>
+        <IconButton color="secondary">
+          <MapIcon />
+        </IconButton>
       </span>
     </div>
   );

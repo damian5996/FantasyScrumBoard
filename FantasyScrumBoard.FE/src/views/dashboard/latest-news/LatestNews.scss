@@ -1,0 +1,45 @@
+.table {
+  border-collapse: separate !important;
+  border-spacing: 0 8px !important;
+
+  thead {
+    tr {
+      th {
+        border-bottom: none;
+        color: white;
+        font-size: 20px;
+        font-weight: 300;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      th,
+      td {
+        background-color: #1d0029;
+        border-bottom: none;
+        color: white;
+      }
+
+      td:first-child {
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+      }
+
+      td:last-child {
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+      }
+    }
+  }
+}
+
+.button {
+  background-color: #d30000 !important;
+  color: white !important;
+  padding: 5px 5px !important;
+  text-transform: none !important;
+  font-weight: normal !important;
+  box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.5);
+}

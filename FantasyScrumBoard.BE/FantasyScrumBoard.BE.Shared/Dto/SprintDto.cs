@@ -15,6 +15,6 @@ namespace FantasyScrumBoard.BE.Shared.Dto
 
         public ProjectDto Project { get; set; }
         public UserDto Mvp { get; set; }
-        public IEnumerable<WorkItem> WorkItems { get; set; }
+        public IEnumerable<WorkItemDto> WorkItems { get; set; }
     }
 }

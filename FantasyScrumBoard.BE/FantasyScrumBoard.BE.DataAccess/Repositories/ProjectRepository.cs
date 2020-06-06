@@ -55,6 +55,14 @@ namespace FantasyScrumBoard.BE.DataAccess.Repositories
                                                    nameof(_db.Project), projectId), ExceptionType.BadRequest));
         }
 
+        public async Task<ProjectNoLoadingDto> GetByIdNoLoadingAsync(long projectId)
+        {
+            return _mapper.Map<ProjectNoLoadingDto>(await _db.Project.FindAsync(projectId) ??
+                                           throw new BusinessLogicException(
+                                               string.Format(Constants.ErrorMessage.NotFoundTemplate,
+                                                   nameof(_db.Project), projectId), ExceptionType.BadRequest));
+        }
+
         public async Task<IEnumerable<ProjectDto>> GetListByUserIdAsync(long userId)
         {
             var projects = await _db.Project.Where(x => x.UserProjects.Any(up => up.UserId == userId)).ToListAsync();

@@ -18,10 +18,17 @@ namespace FantasyScrumBoard.BE.Shared.Mappings
 
             CreateMap<Project, ProjectDto>()
                 .ForMember(dest => dest.ProjectMembers, opt => opt.MapFrom(src => src.UserProjects));
+            
+            CreateMap<Project, ProjectNoLoadingDto>()
+                .ForMember(dest => dest.Sprints, opt => opt.Ignore())
+                .ForMember(dest => dest.WorkItems, opt => opt.Ignore())
+                .ForMember(dest => dest.ProjectMembers, opt => opt.MapFrom(src => src.UserProjects));
+
+
 
             CreateMap<ProjectDto, ProjectViewModel>();
 
-            CreateMap<ProjectDto, ProjectDetailsViewModel>()
+            CreateMap<ProjectNoLoadingDto, ProjectDetailsViewModel>()
                 .ForMember(dest => dest.Users, opt => opt.MapFrom(src => src.ProjectMembers));
 
             CreateMap<long, ProjectDto>()

@@ -6,14 +6,12 @@ using FantasyScrumBoard.BE.DataAccess;
 using FantasyScrumBoard.BE.Shared.Dto;
 using FantasyScrumBoard.BE.Shared.ViewModels;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FantasyScrumBoard.BE.BL.Project
 {
-    internal class ProjectGetDetailsBusinessLogic : BaseBusinessLogic<long, ProjectDto, ProjectDetailsViewModel>, IProjectGetDetailsBusinessLogic
+    internal class ProjectGetDetailsBusinessLogic : BaseBusinessLogic<long, ProjectNoLoadingDto, ProjectDetailsViewModel>, IProjectGetDetailsBusinessLogic
     {
         public ProjectGetDetailsBusinessLogic(IUnitOfWork unitOfWork, IMapper mapper, ILogger<ProjectGetDetailsBusinessLogic> logger) : base(unitOfWork, mapper, logger)
         {
@@ -25,9 +23,11 @@ namespace FantasyScrumBoard.BE.BL.Project
                 new ProjectExistenceValidator(UnitOfWork)
             };
 
-        protected override async Task<ProjectDto> ExecutionAsync(long projectId)
+        protected override async Task<ProjectNoLoadingDto> ExecutionAsync(long projectId)
         {
-            var project = await UnitOfWork.Project.GetByIdAsync(projectId);
+            var project = await UnitOfWork.Project.GetByIdNoLoadingAsync(projectId);
+            //project.Sprints = await UnitOfWork.Sprint.GetByProjectIdAsync(project.Id);
+            
             return project;
         }
     }

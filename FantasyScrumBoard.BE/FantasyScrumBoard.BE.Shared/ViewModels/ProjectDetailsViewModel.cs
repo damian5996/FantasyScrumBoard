@@ -8,6 +8,6 @@ namespace FantasyScrumBoard.BE.Shared.ViewModels
     public class ProjectDetailsViewModel : ProjectViewModel
     {
         public ICollection<SprintViewModel> Sprints { get; set; }
-        public ICollection<UserViewModel> Users { get; set; }
+        public ICollection<ProjectMemberViewModel> Users { get; set; }
     }
 }

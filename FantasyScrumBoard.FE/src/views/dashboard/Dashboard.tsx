@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import ProjectForm from 'features/project-form';
 import { Button, CircularProgress } from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
 
 import { ProjectTile, CurrentTasks, LatestNews, DataWrapper } from '.';
 
@@ -158,20 +159,20 @@ const Dashboard = () => {
               ALL PROJECTS
             </Button>
           </div>
-          {/* <h1>
-                <span>PROJECTS</span>
-                <Button
-                  onClick={() => {
-                    setProjectFormData({
-                      isOpen: true,
-                      data: null
-                    });
-                  }}
-                  style={{ backgroundColor: '#d30000', marginLeft: '10px', color: 'white' }}
-                >
-                  <AddIcon />
-                </Button>
-              </h1> */}
+          <h1>
+            <span>PROJECTS</span>
+            <Button
+              onClick={() => {
+                setProjectFormData({
+                  isOpen: true,
+                  data: null
+                });
+              }}
+              style={{ backgroundColor: '#d30000', marginLeft: '10px', color: 'white' }}
+            >
+              <AddIcon />
+            </Button>
+          </h1>
           <div className={csx.projects}>
             {projects.isLoading && <CircularProgress color="secondary" />}
             {projects.data.length > 0 &&

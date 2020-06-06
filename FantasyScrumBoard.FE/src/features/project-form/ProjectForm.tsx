@@ -57,7 +57,7 @@ const ProjectForm = ({ data, onAdd, onEdit, onClose }: ProjectFormProps) => {
       const project = await addProject({
         name,
         description,
-        startDate: new Date(startDate).toJSON()
+        startDate: new Date(parsedStartDate).toJSON()
       });
       onAdd(project);
     } catch (message) {

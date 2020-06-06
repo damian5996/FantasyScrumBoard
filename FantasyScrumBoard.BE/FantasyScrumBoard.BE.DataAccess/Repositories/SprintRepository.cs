@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Castle.Core.Internal;
 using FantasyScrumBoard.BE.DataAccess.Connection;
 using FantasyScrumBoard.BE.DataAccess.Repositories.Interfaces;
 using FantasyScrumBoard.BE.Shared;
@@ -11,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FantasyScrumBoard.BE.Shared.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace FantasyScrumBoard.BE.DataAccess.Repositories
@@ -47,6 +47,14 @@ namespace FantasyScrumBoard.BE.DataAccess.Repositories
             await _db.SaveChangesAsync();
 
             return sprint.Id;
+        }
+
+        public async Task UpdateAsync(SprintDto sprintDto)
+        {
+            var sprint = await _db.Sprint.FindAsync(sprintDto.Id);
+            _mapper.Map(sprintDto, sprint);
+            sprint = await FillNavigationProperties(sprint, sprintDto);
+            _db.Sprint.Update(sprint);
         }
 
         public async Task<SprintDto> GetByIdAsync(long sprintId)

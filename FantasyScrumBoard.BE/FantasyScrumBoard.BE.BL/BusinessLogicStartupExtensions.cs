@@ -33,7 +33,8 @@ namespace FantasyScrumBoard.BE.BL
                 .AddScoped<IProjectAddBusinessLogic, ProjectAddBusinessLogic>()
                 .AddScoped<IProjectGetListBusinessLogic, ProjectGetListBusinessLogic>()
                 .AddScoped<IUserFacebookAuthenticationLogic, UserFacebookAuthenticationLogic>()
-                .AddScoped<ISprintAddBusinessLogic, SprintAddBusinessLogic>();
+                .AddScoped<ISprintAddBusinessLogic, SprintAddBusinessLogic>()
+                .AddScoped<ISprintCloseBusinessLogic, SprintCloseBusinessLogic>();
         }
 
         public static IApplicationBuilder BusinessLogicConfigure(this IApplicationBuilder app)

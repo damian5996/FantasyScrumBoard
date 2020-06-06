@@ -10,10 +10,12 @@ namespace FantasyScrumBoard.BE.Controllers
     public class SprintController : BaseApiController
     {
         private readonly ISprintAddBusinessLogic _sprintAddBusinessLogic;
+        private readonly ISprintCloseBusinessLogic _sprintCloseBusinessLogic;
 
-        public SprintController(ISprintAddBusinessLogic sprintAddBusinessLogic)
+        public SprintController(ISprintAddBusinessLogic sprintAddBusinessLogic, ISprintCloseBusinessLogic sprintCloseBusinessLogic)
         {
             _sprintAddBusinessLogic = sprintAddBusinessLogic;
+            _sprintCloseBusinessLogic = sprintCloseBusinessLogic;
         }
 
         [HttpPost]
@@ -25,6 +27,14 @@ namespace FantasyScrumBoard.BE.Controllers
             }
 
             var result = await _sprintAddBusinessLogic.ExecuteAsync(sprintAddBindingModel);
+
+            return CreateResponse(result);
+        }
+
+        [HttpPut("{id}/close")]
+        public async Task<IActionResult> CloseSprintAsync([FromRoute] long id)
+        {
+            var result = await _sprintCloseBusinessLogic.ExecuteAsync(id);
 
             return CreateResponse(result);
         }

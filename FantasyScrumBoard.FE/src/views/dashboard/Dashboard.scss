@@ -3,30 +3,21 @@
 $buttonHeaderColor: #1a006c;
 $unActiveButtonHeader: rgba(26, 0, 108, 0.4);
 
-.dashboard {
+.dashboardWrapper {
   display: flex;
   justify-content: center;
-  // width: 100%;
-  min-height: 100vh;
-  background: $gradientPrimary;
+  flex-flow: column;
+  padding: 48px;
 
-  .dashboardWrapper {
+  .header {
     display: flex;
-    background-color: orange;
-    justify-content: center;
-    max-width: 1168px;
-    background-color: rgba(0, 0, 0, 0.2);
+    font-weight: normal;
+    margin-bottom: 39px;
+    font-size: 24px;
+  }
 
-    .header {
-      display: flex;
-      font-weight: normal;
-      margin-bottom: 39px;
-      font-size: 24px;
-    }
-
-    .headerActive {
-      font-weight: bold;
-    }
+  .headerActive {
+    font-weight: bold;
   }
 }
 
@@ -42,8 +33,9 @@ $unActiveButtonHeader: rgba(26, 0, 108, 0.4);
   div:first-child {
     margin-right: 16px;
   }
-  
-  div:not(:first-child), div:not(:last-child) {
+
+  div:not(:first-child),
+  div:not(:last-child) {
     margin-left: 16px;
     margin-right: 16px;
   }

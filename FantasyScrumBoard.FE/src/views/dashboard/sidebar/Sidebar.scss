@@ -1,13 +1,13 @@
 .sidebar {
   width: 240px;
-  position: relative;
+  position: sticky;
+  top: 0;
 
   .userSection {
     height: 244px;
     border-radius: 16px;
     box-shadow: 0 15px 19px -10px rgba(0, 0, 0, 0.5);
     background-color: #1c0030;
-    margin-top: 120px;
 
     .userInfo {
       position: absolute;

@@ -20,7 +20,7 @@ interface ProjectTileProps {
 export const ProjectTile = ({ name, id, onEdit }: ProjectTileProps) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const handleClick = (event) => {
+  const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -31,7 +31,7 @@ export const ProjectTile = ({ name, id, onEdit }: ProjectTileProps) => {
   const handleEdit = (id: number) => {
     handleClose();
     onEdit(id);
-  }
+  };
 
   return (
     <div className={csx.projectTile}>
@@ -44,13 +44,13 @@ export const ProjectTile = ({ name, id, onEdit }: ProjectTileProps) => {
       <h3>{name}</h3>
       <div style={{ backgroundColor: 'white' }}>
         <span>
-          <Link to={`project/${id}/board`}>
+          <a href={`${window.location.origin}/project/${id}/board`}>
             <Tooltip title="Go to board view">
               <IconButton color="secondary">
                 <BoardIcon />
               </IconButton>
             </Tooltip>
-          </Link>
+          </a>
           <Tooltip title="Go to map view">
             <IconButton color="secondary">
               <MapIcon />

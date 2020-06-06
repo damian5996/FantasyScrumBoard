@@ -5,9 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Dto\" />
     <Folder Include="BindingModels\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
 
   <ItemGroup>

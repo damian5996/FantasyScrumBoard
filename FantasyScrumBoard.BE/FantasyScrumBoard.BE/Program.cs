@@ -13,6 +13,7 @@ namespace FantasyScrumBoard.BE
     {
         public static void Main(string[] args)
         {
+            
             CreateHostBuilder(args).Build().Run();
         }
 

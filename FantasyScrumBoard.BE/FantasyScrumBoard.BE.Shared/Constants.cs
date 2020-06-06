@@ -21,6 +21,9 @@
         public static class Configuration
         {
             public const string JwtRoot = "jwt-configuration";
+
+            public const string FacebookAuthRoot = "facebook-auth";
+            public const string FacebookApiConfigurationRoot = "facebook-api-configuration";
         }
     }
 }

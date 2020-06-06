@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FantasyScrumBoard.BE.BL.Common;
+using FantasyScrumBoard.BE.BL.Services.Interfaces;
 using FantasyScrumBoard.BE.BL.User.Interfaces;
 using FantasyScrumBoard.BE.BL.User.Internal;
 using FantasyScrumBoard.BE.DataAccess;
@@ -18,21 +19,27 @@ using System.Threading.Tasks;
 
 namespace FantasyScrumBoard.BE.BL.User
 {
-    internal class UserFacebookAuthenticationLogic : BaseBusinessLogic<FacebookLoginBindingModel, TokenDto, TokenViewModel>, IUserFacebookAuthenticationLogic
+    internal class UserFacebookAuthenticationLogic : BaseBusinessLogic<FacebookLoginBindingModel, UserWithTokenDto, UserWithTokenViewModel>, IUserFacebookAuthenticationLogic
     {
         private readonly IFacebookApiRepository _facebookApiRepository;
         private readonly GetUserByEmail _getUserByEmail;
+        private readonly IJwtService _jwtService;
 
-        public UserFacebookAuthenticationLogic(IUnitOfWork unitOfWork, IMapper mapper, ILogger<UserFacebookAuthenticationLogic> logger,
-            IFacebookApiRepository facebookApiRepository) : base(unitOfWork, mapper, logger)
+        public UserFacebookAuthenticationLogic(
+            IUnitOfWork unitOfWork, 
+            IMapper mapper, 
+            ILogger<UserFacebookAuthenticationLogic> logger,
+            IFacebookApiRepository facebookApiRepository,
+            IJwtService jwtService) : base(unitOfWork, mapper, logger)
         {
             _facebookApiRepository = facebookApiRepository;
             _getUserByEmail = new GetUserByEmail(unitOfWork);
+            _jwtService = jwtService;
         }
 
         protected override IEnumerable<IValidator<FacebookLoginBindingModel>> Validators =>
             Enumerable.Empty<IValidator<FacebookLoginBindingModel>>();
-        protected override async Task<TokenDto> ExecutionAsync(FacebookLoginBindingModel parameter)
+        protected override async Task<UserWithTokenDto> ExecutionAsync(FacebookLoginBindingModel parameter)
         {
             var isTokenValid = await _facebookApiRepository.ValidateTokenAsync(parameter.Token);
 
@@ -44,13 +51,18 @@ namespace FantasyScrumBoard.BE.BL.User
             var facebookUserDto = await _facebookApiRepository.GetUserInfoAsync(parameter.Token);
 
             var userDto = await _getUserByEmail.ExecuteAsync(facebookUserDto.Email, false);
-
+            //zle pobiera date 01.01.0001 ??
             if (userDto == null)
             {
-
+                await UnitOfWork.User.InsertAsync(facebookUserDto);
+                userDto = await _getUserByEmail.ExecuteAsync(facebookUserDto.Email, false);
             }
 
-            return new TokenDto();
+            var userWithTokenDto = Mapper.Map<UserWithTokenDto>(userDto);
+
+            userWithTokenDto.JwtDto = _jwtService.GenerateToken(userDto);
+
+            return userWithTokenDto;
         }
     }
 }

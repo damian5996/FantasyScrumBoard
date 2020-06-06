@@ -5,7 +5,7 @@ namespace FantasyScrumBoard.BE.BL.Services.Interfaces
 {
     public interface IJwtService
     {
-        JwtDto GenerateToken(UserDto user);
+        JwtDto GenerateToken(UserDto userDto);
         Task<JwtDto> RefreshToken(string refreshToken);
     }
 }

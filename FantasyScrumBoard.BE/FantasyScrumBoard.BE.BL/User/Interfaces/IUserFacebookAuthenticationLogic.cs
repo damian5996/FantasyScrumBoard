@@ -7,7 +7,7 @@ using System.Text;
 
 namespace FantasyScrumBoard.BE.BL.User.Interfaces
 {
-    public interface IUserFacebookAuthenticationLogic : IBusinessLogic<FacebookLoginBindingModel, TokenViewModel>
+    public interface IUserFacebookAuthenticationLogic : IBusinessLogic<FacebookLoginBindingModel, UserWithTokenViewModel>
     {
     }
 }

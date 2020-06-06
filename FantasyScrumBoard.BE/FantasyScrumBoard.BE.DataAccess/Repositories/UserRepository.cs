@@ -2,7 +2,10 @@
 using FantasyScrumBoard.BE.DataAccess.Connection;
 using FantasyScrumBoard.BE.DataAccess.Repositories.Interfaces;
 using FantasyScrumBoard.BE.Shared.Dto;
+using FantasyScrumBoard.BE.Shared.Dto.Facebook;
+using FantasyScrumBoard.BE.Shared.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Threading.Tasks;
 
 namespace FantasyScrumBoard.BE.DataAccess.Repositories
@@ -20,7 +23,17 @@ namespace FantasyScrumBoard.BE.DataAccess.Repositories
 
         public async Task<UserDto> GetByEmailOrDefaultAsync(string email)
         {
-            return _mapper.Map<UserDto>(await _db.User.FirstOrDefaultAsync(user => user.Email == email));
+            var user = await _db.User.FirstOrDefaultAsync(user => user.Email == email);
+            return _mapper.Map<UserDto>(user);
+        }
+
+        public async Task<int> InsertAsync(FacebookUserDto facebookUserDto)
+        {
+            var user = _mapper.Map<User>(facebookUserDto);
+            user.CreatedAt = DateTime.UtcNow;
+            await _db.User.AddAsync(user);
+
+            return await _db.SaveChangesAsync();
         }
     }
 }

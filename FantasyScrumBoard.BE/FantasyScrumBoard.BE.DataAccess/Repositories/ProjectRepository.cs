@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Linq;
+using AutoMapper;
 using FantasyScrumBoard.BE.DataAccess.Connection;
 using FantasyScrumBoard.BE.DataAccess.Repositories.Interfaces;
 using FantasyScrumBoard.BE.Shared;
@@ -22,9 +24,15 @@ namespace FantasyScrumBoard.BE.DataAccess.Repositories
             _mapper = mapper;
         }
 
+        public IQueryable<ProjectDto> GetAll()
+        {
+            return _mapper.ProjectTo<ProjectDto>(_db.Project.AsQueryable());
+        }
+
         public async Task<long> InsertAsync(ProjectDto projectDto)
         {
             var project = _mapper.Map<Project>(projectDto);
+            project.CreatedAt = DateTime.UtcNow;
             project = await FillNavigationProperties(project, projectDto);
 
             await _db.Project.AddAsync(project);

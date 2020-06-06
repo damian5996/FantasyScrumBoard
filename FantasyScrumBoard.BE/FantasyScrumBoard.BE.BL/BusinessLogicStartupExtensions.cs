@@ -2,6 +2,8 @@
 using FantasyScrumBoard.BE.BL.Project.Interfaces;
 using FantasyScrumBoard.BE.BL.Services;
 using FantasyScrumBoard.BE.BL.Services.Interfaces;
+using FantasyScrumBoard.BE.BL.Sprint;
+using FantasyScrumBoard.BE.BL.Sprint.Interfaces;
 using FantasyScrumBoard.BE.BL.User;
 using FantasyScrumBoard.BE.BL.User.Interfaces;
 using FantasyScrumBoard.BE.DataAccess;
@@ -29,7 +31,8 @@ namespace FantasyScrumBoard.BE.BL
                 .AddScoped<IJwtService, JwtService>()
                 .AddScoped<ICurrentUserService, CurrentUserService>()
                 .AddScoped<IProjectAddBusinessLogic, ProjectAddBusinessLogic>()
-                .AddScoped<IUserFacebookAuthenticationLogic, UserFacebookAuthenticationLogic>();
+                .AddScoped<IUserFacebookAuthenticationLogic, UserFacebookAuthenticationLogic>()
+                .AddScoped<ISprintAddBusinessLogic, SprintAddBusinessLogic>();
         }
 
         public static IApplicationBuilder BusinessLogicConfigure(this IApplicationBuilder app)

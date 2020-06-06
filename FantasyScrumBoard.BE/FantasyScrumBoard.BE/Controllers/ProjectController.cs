@@ -19,6 +19,11 @@ namespace FantasyScrumBoard.BE.Controllers
         [HttpPost]
         public async Task<IActionResult> AddAsync([FromBody] ProjectAddBindingModel projectAddBindingModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return ModelStateError();
+            }
+
             var result = await _projectAddBusinessLogic.ExecuteAsync(projectAddBindingModel);
 
             return CreateResponse(result);

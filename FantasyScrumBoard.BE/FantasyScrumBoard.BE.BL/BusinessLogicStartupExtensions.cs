@@ -29,6 +29,7 @@ namespace FantasyScrumBoard.BE.BL
                 .AddScoped<IJwtService, JwtService>()
                 .AddScoped<ICurrentUserService, CurrentUserService>()
                 .AddScoped<IProjectAddBusinessLogic, ProjectAddBusinessLogic>()
+                .AddScoped<IProjectGetListBusinessLogic, ProjectGetListBusinessLogic>()
                 .AddScoped<IUserFacebookAuthenticationLogic, UserFacebookAuthenticationLogic>();
         }
 

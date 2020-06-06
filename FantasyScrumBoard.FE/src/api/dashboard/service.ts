@@ -13,13 +13,13 @@ const getProjectItems = (count: number): Project[] =>
     editedAt: new Date(Date.now())
   })) as any[];
 
-export const getProjects = (): Promise<Project[]> => {
-  return new Promise((resolve,  reject) => {
-    setTimeout(() => {
-      resolve(getProjectItems(4))
-    }, 1500);
-  });
-}
+// export const getProjects = (): Promise<Project[]> => {
+//   return new Promise((resolve,  reject) => {
+//     setTimeout(() => {
+//       resolve(getProjectItems(4))
+//     }, 1500);
+//   });
+// }
 
 const getNewsItems = (count: number): News[] => 
   Array.from({ length: count}, (v, k) => k).map(k => ({

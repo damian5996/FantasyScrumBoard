@@ -3,9 +3,19 @@ import { RouteChildrenProps } from 'react-router';
 
 import { ProjectDetails, getProjectDetails } from 'api';
 
+import { ProjectTeam, ProjectSprints } from '.';
+
+import csx from './ProjectDetails.scss';
+import { CircularProgress } from '@material-ui/core';
+import SprintForm from 'features/sprint-form';
+
 interface ProjectDetailsProps extends RouteChildrenProps<{ id: string }> {}
 
 const ProjectDetails = ({ match }: ProjectDetailsProps) => {
+  const [sprintFormData, setSprintFormData] = useState({
+    isOpen: false,
+    data: null
+  });
   const [isLoading, setIsLoading] = useState(true);
   const [projectDetails, setProjectDetails] = useState<ProjectDetails>();
 
@@ -28,11 +38,40 @@ const ProjectDetails = ({ match }: ProjectDetailsProps) => {
     handleGetProjectDetails(+match.params.id);
   }, []);
 
-  if (isLoading) return <div>Loading project details...</div>;
-  if (projectDetails === null && !isLoading) return <div>No details</div>;
-  
-  console.log(projectDetails);
-  return <div>siema szczegoly projektu here</div>;
+  return (
+    <div className={csx.projectDetails}>
+      {isLoading ? (
+        <div className={csx.loader}>
+          <CircularProgress color="secondary" />
+        </div>
+      ) : (
+        <>
+          <h2>
+            <span>PROJECTS / Project name</span>
+          </h2>
+
+          {sprintFormData.isOpen && (
+            <SprintForm
+              projectId={+match.params.id}
+              data={sprintFormData.data}
+              onClose={() =>
+                setSprintFormData({
+                  isOpen: false,
+                  data: null
+                })
+              }
+              onAdd={() => {}}
+              onEdit={() => {}}
+            />
+          )}
+
+          <ProjectSprints sprints={[]} />
+
+          <ProjectTeam />
+        </>
+      )}
+    </div>
+  );
 };
 
 export default ProjectDetails;

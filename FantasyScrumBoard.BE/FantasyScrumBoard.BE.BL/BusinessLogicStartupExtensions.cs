@@ -6,6 +6,8 @@ using FantasyScrumBoard.BE.BL.Sprint;
 using FantasyScrumBoard.BE.BL.Sprint.Interfaces;
 using FantasyScrumBoard.BE.BL.User;
 using FantasyScrumBoard.BE.BL.User.Interfaces;
+using FantasyScrumBoard.BE.BL.WorkItem;
+using FantasyScrumBoard.BE.BL.WorkItem.Interfaces;
 using FantasyScrumBoard.BE.DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -34,7 +36,10 @@ namespace FantasyScrumBoard.BE.BL
                 .AddScoped<IProjectGetListBusinessLogic, ProjectGetListBusinessLogic>()
                 .AddScoped<IProjectGetDetailsBusinessLogic, ProjectGetDetailsBusinessLogic>()
                 .AddScoped<IUserFacebookAuthenticationLogic, UserFacebookAuthenticationLogic>()
-                .AddScoped<ISprintAddBusinessLogic, SprintAddBusinessLogic>();
+                .AddScoped<ISprintAddBusinessLogic, SprintAddBusinessLogic>()
+                .AddScoped<ISprintCloseBusinessLogic, SprintCloseBusinessLogic>()
+                .AddScoped<ISprintGetByIdBusinessLogic, SprintGetByIdBusinessLogic>()
+                .AddScoped<IWorkItemAddBusinessLogic, WorkItemAddBusinessLogic>();
         }
 
         public static IApplicationBuilder BusinessLogicConfigure(this IApplicationBuilder app)

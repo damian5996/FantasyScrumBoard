@@ -52,6 +52,11 @@ export const addProject = (project: Partial<Project>) => {
   return call<Project>(coreInstance.post('Project', project));
 };
 
+export const getProjects = () => {
+  return call<Project[]>(coreInstance.get('Project'));
+};
+
+
 export const editProject = (): Promise<Project> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {

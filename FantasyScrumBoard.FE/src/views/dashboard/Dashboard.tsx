@@ -6,7 +6,7 @@ import AddIcon from '@material-ui/icons/Add';
 
 import { ProjectTile, CurrentTasks, LatestNews, DataWrapper } from '.';
 
-import { getProjects, WorkItem, getWorkItemsDashboard, News, getNews, Project } from 'api';
+import { WorkItem, getWorkItemsDashboard, News, getNews, Project, getProjects } from 'api';
 
 import csx from './Dashboard.scss';
 
@@ -173,6 +173,7 @@ const Dashboard = () => {
               <AddIcon />
             </Button>
           </h1>
+          
           <div className={csx.projects}>
             {projects.isLoading && <CircularProgress color="secondary" />}
             {projects.data.length > 0 &&

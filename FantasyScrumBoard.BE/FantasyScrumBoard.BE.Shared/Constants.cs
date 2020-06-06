@@ -15,6 +15,7 @@
 
             public const string NotFoundTemplate = "{0} [{1}] not found!";
             public const string IsRequiredTemplate = "{0} is required!";
+            public const string SprintNotInProjectTemplate = "Sprint [{0}] is not in Project [{1}]";
         }
 
         public static class Database

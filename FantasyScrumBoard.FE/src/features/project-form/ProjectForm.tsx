@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 
-import { addProject, editProject } from 'api';
+import { addProject, editProject, Project } from 'api';
 
 import { useForm, FormConfig, req, min, max, date } from 'shared/forms';
 
 import { Modal, Field, TextareaField, Button, DateField } from 'shared/ui';
 
 import csx from './ProjectForm.scss';
+
+interface ProjectFormProps {
+  data: Project | null;
+  onClose(): void;
+}
 
 const config: FormConfig = [
   { label: 'Name', validators: [req, min(2), max(100)] },
@@ -15,10 +20,20 @@ const config: FormConfig = [
   { label: 'End date', validators: [date] }
 ];
 
-const ProjectForm = () => {
+const getConfig = (data: Project | null) => {
+  if (data) {
+    const values = [data.name, data.description, data.startDate, data.endDate];
+
+    return config.map((c, idx) => ({ ...c, value: values[idx] }));
+  }
+
+  return config;
+};
+
+const ProjectForm = ({ data, onClose }: ProjectFormProps) => {
   const [isPending, setIsPending] = useState(false);
 
-  const [{ fields, isDirty, isInvalid }, change, directChange, submit] = useForm(config);
+  const [{ fields, isDirty, isInvalid }, change, directChange, submit] = useForm(getConfig(data));
 
   const handleSubmit = async e => {
     if (submit(e)) {
@@ -39,7 +54,7 @@ const ProjectForm = () => {
   };
 
   return (
-    <Modal>
+    <Modal onClose={onClose}>
       <form className={csx.projectForm} onSubmit={handleSubmit}>
         <p>Add new project</p>
 

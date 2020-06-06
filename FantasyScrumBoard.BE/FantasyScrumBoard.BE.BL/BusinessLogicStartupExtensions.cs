@@ -37,6 +37,7 @@ namespace FantasyScrumBoard.BE.BL
                 .AddScoped<IUserFacebookAuthenticationLogic, UserFacebookAuthenticationLogic>()
                 .AddScoped<ISprintAddBusinessLogic, SprintAddBusinessLogic>()
                 .AddScoped<ISprintCloseBusinessLogic, SprintCloseBusinessLogic>()
+                .AddScoped<ISprintGetByIdBusinessLogic, SprintGetByIdBusinessLogic>()
                 .AddScoped<IWorkItemAddBusinessLogic, WorkItemAddBusinessLogic>();
         }
 

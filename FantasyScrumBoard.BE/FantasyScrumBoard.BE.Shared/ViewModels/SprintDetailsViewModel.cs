@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using FantasyScrumBoard.BE.Shared.Models;
 
-namespace FantasyScrumBoard.BE.Shared.Dto
+namespace FantasyScrumBoard.BE.Shared.ViewModels
 {
-    public class SprintDto
+    public class SprintDetailsViewModel
     {
         public long Id { get; set; }
         public DateTime StartDate { get; set; }
@@ -13,8 +12,7 @@ namespace FantasyScrumBoard.BE.Shared.Dto
         public DateTime CreatedAt { get; set; }
         public int Number { get; set; }
 
-        public ProjectDto Project { get; set; }
-        public UserDto Mvp { get; set; }
-        public IEnumerable<WorkItemDto> WorkItems { get; set; }
+        public UserViewModel Mvp { get; set; }
+        public IEnumerable<WorkItemViewModel> WorkItems { get; set; }
     }
 }

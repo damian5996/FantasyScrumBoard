@@ -20,6 +20,9 @@ namespace FantasyScrumBoard.BE.Shared.Mappings
                 .ForMember(dest => dest.ProjectMembers, opt => opt.MapFrom(src => src.UserProjects));
 
             CreateMap<ProjectDto, ProjectViewModel>();
+
+            CreateMap<long, ProjectDto>()
+                .ConstructUsing(projectId => new ProjectDto {Id = projectId});
         }
     }
 }

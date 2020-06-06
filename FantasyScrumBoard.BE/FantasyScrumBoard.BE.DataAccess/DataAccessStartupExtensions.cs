@@ -22,9 +22,9 @@ namespace FantasyScrumBoard.BE.DataAccess
             return services
                 .AddDbContext<FantasyScrumBoardDbContext>(options =>
                     options
-                    .UseLazyLoadingProxies()
-                    .UseSqlServer(configuration
-                        .GetConnectionString(Constants.Database.DefaultConnectionString)))
+                        .UseLazyLoadingProxies()
+                        .UseSqlServer(configuration
+                            .GetConnectionString(Constants.Database.DefaultConnectionString)))
                 .AddScoped<IAchievementRepository, AchievementRepository>()
                 .AddScoped<ICommentRepository, CommentRepository>()
                 .AddScoped<INotificationRepository, NotificationRepository>()

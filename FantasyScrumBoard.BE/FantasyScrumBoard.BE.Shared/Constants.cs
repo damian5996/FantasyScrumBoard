@@ -14,6 +14,7 @@
             public const string ProjectInvalidStartDate = "The project cannot start earlier than today!";
 
             public const string NotFoundTemplate = "{0} [{1}] not found!";
+            public const string IsRequiredTemplate = "{0} is required!";
         }
 
         public static class Database

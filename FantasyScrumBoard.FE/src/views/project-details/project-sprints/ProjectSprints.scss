@@ -1,0 +1,26 @@
+@import 'styles/mixins';
+
+$buttonHeaderColor: #1a006c;
+$unActiveButtonHeader: rgba(26, 0, 108, 0.4);
+
+.projectSprints {
+  margin-top: 44px;
+
+  .buttonHeader {
+    color: white !important;
+    padding: 16px !important;
+    margin: 0 !important;
+    border-radius: 8px !important;
+    height: 48px;
+    background-color: $unActiveButtonHeader !important;
+    font-weight: normal !important;
+    font-size: 24px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    width: 150px;
+  }
+}

@@ -13,11 +13,11 @@ const USER_INFO: UserInfoList[] = [
   },
   {
     icon: '25',
-    label: 'points this sprint'
+    label: 'sprint2'
   },
   {
     icon: '78',
-    label: 'points total'
+    label: 'total'
   }
 ];
 
@@ -36,22 +36,32 @@ export const Sidebar = () => {
         <div className={csx.avatar}>img</div>
         <div className={csx.userInfo}>
           <p className={csx.userLogin}>USERNAME</p>
-          <ul style={{marginLeft: '16px'}}>
-            {USER_INFO.map((user, id) => {
-              return (
-                <li key={id} className={csx.listElement}>
-                  <span>{user.icon}</span> <span>{user.label}</span>
-                </li>
-              );
-            })}
+
+          <p style={{ textAlign: 'center' }}>{USER_INFO[0].label}</p>
+          <p style={{ textAlign: 'center', fontWeight: 'bold', marginTop: '24px', marginBottom: '8px' }}>POINTS</p>
+
+          <ul>
+            <li className={csx.listElement}>
+              <span>{USER_INFO[1].icon}</span> <span>{USER_INFO[1].label}</span>
+            </li>
+            <li className={csx.listElement}>
+              <span>{USER_INFO[2].icon}</span> <span>{USER_INFO[2].label}</span>
+            </li>
           </ul>
+
         </div>
       </section>
 
       <nav className={csx.nav}>
         <ul>
           {SIDEBAR_LINKS.map((link) => (
-            <li key={link} className={`${csx.link} ${activeLink === link ? csx.linkActive : ''}`} onClick={(event) => handleChangeLink(event, link)}>{link.toLocaleUpperCase()}</li>
+            <li
+              key={link}
+              className={`${csx.link} ${activeLink === link ? csx.linkActive : ''}`}
+              onClick={(event) => handleChangeLink(event, link)}
+            >
+              {link.toLocaleUpperCase()}
+            </li>
           ))}
         </ul>
       </nav>

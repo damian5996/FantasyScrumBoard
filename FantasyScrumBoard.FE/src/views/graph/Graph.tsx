@@ -6,11 +6,11 @@ import csx from './Graph.scss';
 
 const myTreeData: ReactD3TreeItem[] = [
   {
-    name: 'Top Level',
+    name: 'Sprint 1',
     attributes: {
-      keyA: 'val A',
-      keyB: 'val B',
-      keyC: 'val C'
+      keyA: 'Task 1',
+      keyB: 'Task 2',
+      keyC: 'Task 3'
     },
     children: [
       {

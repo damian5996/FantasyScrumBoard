@@ -27,19 +27,24 @@
     letter-spacing: normal;
     color: $white;
 
+    .btns {
+      margin-left: auto;
+      a {
+        button {
+          background: $primaryDark;
+          color: $white;
+
+          &:first-of-type {
+            margin-right: 15px;
+          }
+        }
+      }
+    }
+
     & > span {
       display: block;
       flex-shrink: 0;
       max-width: 40%;
-    }
-
-    &::after {
-      content: '';
-      background: $white;
-      height: 2px;
-      flex-shrink: 0;
-      width: 60%;
-      margin-left: auto;
     }
   }
 }

@@ -1,15 +1,20 @@
 @import 'styles/mixins';
 
+$buttonHeaderColor: #1a006c;
+$unActiveButtonHeader: rgba(26, 0, 108, 0.4);
+
 .dashboard {
   display: flex;
   justify-content: center;
-  width: 100%;
+  // width: 100%;
   min-height: 100vh;
   background: $gradientPrimary;
 
   .dashboardWrapper {
     display: flex;
-    max-width: 1300px;
+    background-color: orange;
+    justify-content: center;
+    max-width: 1168px;
     background-color: rgba(0, 0, 0, 0.2);
 
     .header {
@@ -57,4 +62,22 @@
   font-weight: normal !important;
   height: 40px;
   box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.5);
+}
+
+.buttonHeader {
+  color: white !important;
+  padding: 16px !important;
+  margin: 0 !important;
+  border-radius: 8px !important;
+  height: 48px;
+}
+
+.activeButton {
+  background-color: $buttonHeaderColor !important;
+  font-weight: bold;
+}
+
+.unActiveButton {
+  background-color: $unActiveButtonHeader !important;
+  font-weight: normal !important;
 }

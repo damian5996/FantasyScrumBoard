@@ -1,0 +1,29 @@
+@import 'styles/mixins';
+
+.alert {
+  @include rowBetween;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 10;
+
+  & > span {
+    @include label;
+    margin: 0 auto;
+  }
+
+  & > svg {
+    opacity: 0.8;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &.error {
+    background: $error;
+    color: $white;
+  }
+}

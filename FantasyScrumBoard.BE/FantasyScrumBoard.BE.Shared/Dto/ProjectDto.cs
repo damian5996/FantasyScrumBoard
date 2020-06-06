@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FantasyScrumBoard.BE.Shared.Models
+namespace FantasyScrumBoard.BE.Shared.Dto
 {
-    public class Project
+    public class ProjectDto
     {
         public long Id { get; set; }
         public string Name { get; set; }
@@ -14,8 +14,8 @@ namespace FantasyScrumBoard.BE.Shared.Models
         public DateTime CreatedAt { get; set; }
         public DateTime? EditedAt { get; set; }
 
-        public virtual ICollection<Sprint> Sprints { get; set; } = new HashSet<Sprint>();
-        public virtual ICollection<WorkItem> WorkItems { get; set; } = new HashSet<WorkItem>();
-        public virtual ICollection<UserProject> UserProjects { get; set; } = new HashSet<UserProject>();
+        public virtual IEnumerable<SprintDto> Sprints { get; set; }
+        public virtual IEnumerable<WorkItemDto> WorkItems { get; set; }
+        public virtual IEnumerable<ProjectMemberDto> ProjectMembers { get; set; }
     }
 }

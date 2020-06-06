@@ -10,6 +10,10 @@
 
             public const string ExpiredRefreshToken = "Expired refresh token";
             public const string InvalidRefreshToken = "Invalid refresh token";
+
+            public const string ProjectInvalidStartDate = "The project cannot start earlier than today!";
+
+            public const string NotFoundTemplate = "{0} [{1}] not found!";
         }
 
         public static class Database

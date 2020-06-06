@@ -6,11 +6,12 @@
   align-items: center;
   justify-content: center;
   background: $gradientPrimary;
+  padding: 0 40px;
 
   .projectTasks {
     display: grid;
     justify-content: center;
-    grid-template-columns: 300px 300px 300px 300px 300px;
+    grid-template-columns: repeat(5, 1fr);
     grid-gap: 30px;
 
     .boardColumn {
@@ -35,21 +36,38 @@
 
         .task {
           user-select: 'none';
-          padding: 10px;
+          padding: 14px;
           margin: 0 0 10px 0;
           display: flex;
           flex-flow: column;
 
+          .header {
+            display: flex;
+            align-items: center;
+
+            & > button {
+              color: $white;
+              margin-left: auto;
+            }
+          }
+
           .name {
             font-size: 20px;
             display: block;
-            margin-bottom: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
           }
 
           .description {
             font-size: 16px;
             display: block;
-            line-height: 22px;
+            line-height: 24px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
           }
         }
       }

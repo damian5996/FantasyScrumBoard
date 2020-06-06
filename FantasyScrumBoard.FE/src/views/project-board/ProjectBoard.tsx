@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import MoreHoriz from '@material-ui/icons/MoreHoriz';
 
 import { getTasks } from 'api';
 
 import csx from './ProjectBoard.scss';
+import { IconButton, Menu, MenuItem } from '@material-ui/core';
 
 const taskStatusesLabels = ['To do', 'In progress', 'Code review', 'Testing', 'Done'];
 
@@ -39,8 +41,19 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 });
 
 function ProjectBoardView() {
+  const [menuData, setMenuData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [state, setState] = useState([]);
+
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const handleGetTasks = async () => {
     if (!isLoading) {
@@ -87,62 +100,98 @@ function ProjectBoardView() {
   }
 
   return (
-    <div className={csx.projectBoardView}>
-      {isLoading ? (
-        <CircularProgress color="secondary" />
-      ) : (
-        <div className={csx.projectTasks}>
-          <DragDropContext onDragEnd={onDragEnd}>
-            {state.map((el, ind) => (
-              <Droppable key={ind} droppableId={`${ind}`}>
-                {(provided, snapshot) => (
-                  <div
-                    ref={provided.innerRef}
-                    className={csx.boardColumn}
-                    {...provided.droppableProps}
-                  >
-                    <p>{taskStatusesLabels[ind]}</p>
+    <>
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <MenuItem>Details</MenuItem>
+        <MenuItem>Edit</MenuItem>
+        <MenuItem
+          onClick={() => {
+            const newState = state.map((s, sidx) => {
+              if (sidx === menuData.ind) {
+                return s.filter((si, idx) => {
+                  return si.id !== menuData.item.id;
+                });
+              }
 
-                    <div className={csx.tasks}>
-                      {el.map((item, index) => (
-                        <Draggable key={item.id} draggableId={item.id} index={index}>
-                          {(provided, snapshot) => (
-                            <div
-                              ref={provided.innerRef}
-                              className={csx.task}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                              style={getItemStyle(
-                                snapshot.isDragging,
-                                provided.draggableProps.style
-                              )}
-                            >
-                              <span className={csx.name}>{item.name}</span>
-                              <span className={csx.description}>{item.description}</span>
-                              {/* <button
-                                  type="button"
-                                  onClick={() => {
-                                    const newState = [...state];
-                                    newState[ind].splice(index, 1);
-                                    setState(newState.filter(group => group.length));
-                                  }}
-                                >
-                                  delete
-                                </button> */}
-                            </div>
-                          )}
-                        </Draggable>
-                      ))}
-                      {provided.placeholder}
+              return s;
+            });
+
+            handleClose();
+            setState(newState);
+          }}
+        >
+          Delete
+        </MenuItem>
+      </Menu>
+
+      <div className={csx.projectBoardView}>
+        {isLoading ? (
+          <CircularProgress color="secondary" />
+        ) : (
+          <div className={csx.projectTasks}>
+            <DragDropContext onDragEnd={onDragEnd}>
+              {state.map((el, ind) => (
+                <Droppable key={ind} droppableId={`${ind}`}>
+                  {(provided, snapshot) => (
+                    <div
+                      ref={provided.innerRef}
+                      className={csx.boardColumn}
+                      {...provided.droppableProps}
+                    >
+                      <p>{taskStatusesLabels[ind]}</p>
+
+                      <div className={csx.tasks}>
+                        {el.map((item, index) => (
+                          <Draggable key={item.id} draggableId={item.id} index={index}>
+                            {(provided, snapshot) => (
+                              <div
+                                ref={provided.innerRef}
+                                className={csx.task}
+                                {...provided.draggableProps}
+                                {...provided.dragHandleProps}
+                                style={getItemStyle(
+                                  snapshot.isDragging,
+                                  provided.draggableProps.style
+                                )}
+                              >
+                                <div className={csx.header}>
+                                  <span title={item.name} className={csx.name}>
+                                    {item.name}
+                                  </span>
+                                  <IconButton
+                                    size="medium"
+                                    aria-controls="simple-menu"
+                                    aria-haspopup="true"
+                                    onClick={e => {
+                                      setMenuData({ item, ind });
+                                      handleClick(e);
+                                    }}
+                                  >
+                                    <MoreHoriz />
+                                  </IconButton>
+                                </div>
+                                <span className={csx.description}>{item.description}</span>
+                              </div>
+                            )}
+                          </Draggable>
+                        ))}
+                        {provided.placeholder}
+                      </div>
                     </div>
-                  </div>
-                )}
-              </Droppable>
-            ))}
-          </DragDropContext>
-        </div>
-      )}
-    </div>
+                  )}
+                </Droppable>
+              ))}
+            </DragDropContext>
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 

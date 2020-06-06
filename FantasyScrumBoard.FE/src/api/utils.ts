@@ -10,10 +10,10 @@ export const parseError = ({ response: { statusText, data } }: AxiosError) => {
   return Promise.reject(statusText);
 };
 
-export const call = <R>(promise: Promise<AxiosResponse<ApiResponse<R>>>): Promise<R> => {
+export const call = <R>(promise: Promise<AxiosResponse<R>>): Promise<R> => {
   return new Promise(async (resolve, reject) => {
     try {
-      resolve((await promise).data.data);
+      resolve((await promise).data);
     } catch (err) {
       reject(err);
     }

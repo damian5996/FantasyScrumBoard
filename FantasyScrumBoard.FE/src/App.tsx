@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 
-import { UnprotectedRoute, ProtectedRoute } from 'features/auth';
+import AuthProvider, { UnprotectedRoute, ProtectedRoute } from 'features/auth';
 
 import { withLazy } from 'shared/utils';
 
@@ -16,34 +16,31 @@ const AchievementListView = withLazy(() => import('views/achievements'));
 const App = () => {
   return (
     <BrowserRouter>
-      <Switch>
-        <Route
-          exact
-          path="/"
-          render={() => {
-            return <div>Helo world</div>;
-          }}
-        />
+      <AuthProvider>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => {
+              return <div>Helo world</div>;
+            }}
+          />
 
-        <UnprotectedRoute exact path="/dashboard" redirect="/login" component={DashboardView} />
+          <Route exact path="/dashboard" component={DashboardView} />
 
-        <UnprotectedRoute exact path="/login" redirect="/" component={LoginView} />
+          <Route exact path="/login" component={LoginView} />
 
-        <Route exact path="/user/:id/achievement" component={AchievementListView} />
+          <Route exact path="/user/:id/achievement" component={AchievementListView} />
 
-        <UnprotectedRoute
-          exact
-          path="/project/:id/board"
-          redirect="/login"
-          component={ProjectBoardView}
-        />
+          <Route exact path="/project/:id/board" component={ProjectBoardView} />
 
-        <Route exact path="/project/:id/details" component={ProjectDetailsView} />
+          <Route exact path="/project/:id/details" component={ProjectDetailsView} />
 
-        <UnprotectedRoute exact path="/graph" redirect="/login" component={GraphView} />
+          <Route exact path="/graph" component={GraphView} />
 
-        <Route path="**" render={() => <div>Not Found Page </div>} />
-      </Switch>
+          <Route path="**" render={() => <div>Not Found Page </div>} />
+        </Switch>
+      </AuthProvider>
     </BrowserRouter>
   );
 };

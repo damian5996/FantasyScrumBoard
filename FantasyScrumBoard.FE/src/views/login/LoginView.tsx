@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import FacebookLogin from 'react-facebook-login';
 
 import { FB_APP_ID } from 'consts';
@@ -6,6 +6,7 @@ import { FB_APP_ID } from 'consts';
 import { Field, Button } from 'shared/ui';
 
 import { FormConfig, min, req, max, email, useForm } from 'shared/forms';
+import { AuthContext } from 'features/auth';
 
 import csx from './LoginView.scss';
 
@@ -15,22 +16,9 @@ const config: FormConfig = [
 ];
 
 const LoginView = () => {
-  const [isPending, setIsPending] = useState(false);
+  const { init, logIn, isPending } = useContext(AuthContext);
 
   const [{ fields, isDirty, isInvalid }, change, directChange, submit] = useForm(config);
-
-  const onFbLoginClick = () => {
-    setIsPending(true);
-  };
-
-  const onFbResponse = r => {
-    console.log(r);
-    setIsPending(false);
-  };
-
-  const onFbFailure = e => {
-    console.log(e);
-  };
 
   return (
     <div className={csx.loginView}>
@@ -67,9 +55,8 @@ const LoginView = () => {
           autoLoad
           appId={FB_APP_ID}
           fields="name,email,picture"
-          onClick={onFbLoginClick}
-          callback={onFbResponse}
-          onFailure={onFbFailure}
+          onClick={init}
+          callback={logIn}
           textButton="Facebook"
           icon={
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24">

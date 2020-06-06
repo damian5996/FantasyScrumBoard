@@ -106,6 +106,17 @@ function ProjectBoardView({ match }) {
     }
   }
 
+  const onTaskAdd = task => {
+    const newState = [...state];
+    newState[0] = [...newState[0], task];
+
+    setTaskFormData({
+      isOpen: false,
+      data: null
+    });
+    setState(newState);
+  };
+
   return (
     <>
       <Menu
@@ -152,6 +163,7 @@ function ProjectBoardView({ match }) {
           data={taskFormData.data}
           projectId={+match.params.projectId}
           sprintId={+match.params.sprintId}
+          onAdd={onTaskAdd}
           onClose={() => {
             setTaskFormData({
               isOpen: false,

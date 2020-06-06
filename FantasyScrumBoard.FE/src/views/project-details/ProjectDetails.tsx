@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { RouteChildrenProps } from 'react-router';
 
-import { CircularProgress } from '@material-ui/core';
-
 import { ProjectDetails, getProjectDetails, Sprint } from 'api';
-
-import SprintForm from 'features/sprint-form';
 
 import { ProjectTeam, ProjectSprints } from '.';
 
 import csx from './ProjectDetails.scss';
-
+import { CircularProgress, Tooltip, IconButton } from '@material-ui/core';
+import SprintForm from 'features/sprint-form';
+import { BoardIcon, MapIcon } from 'shared/icons';
 
 interface ProjectDetailsProps extends RouteChildrenProps<{ id: string }> {}
 
@@ -51,6 +49,19 @@ const ProjectDetails = ({ match }: ProjectDetailsProps) => {
         <>
           <h2>
             <span>PROJECTS / Project name</span>
+
+            <div className={csx.btns}>
+              <a href={`${window.location.origin}/project/${match.params.id}/0/board`}>
+                <IconButton color="secondary">
+                  <BoardIcon />
+                </IconButton>
+              </a>
+              <a href={`${window.location.origin}/graph`}>
+                <IconButton color="secondary">
+                  <MapIcon />
+                </IconButton>
+              </a>
+            </div>
           </h2>
 
           {sprintFormData.isOpen && (

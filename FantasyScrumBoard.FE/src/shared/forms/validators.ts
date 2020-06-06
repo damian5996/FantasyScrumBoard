@@ -20,16 +20,16 @@ export const max = (ln: number) => (value: string, label: string) =>
   new Validation(value.trim().length > ln, `${label} must have ${ln} or less characters`);
 
 export const url = (value: string, label: string) =>
-  new Validation(!PATTERNS.URL.test(value), `${label} must have invalid url format`);
+  new Validation(!PATTERNS.URL.test(value), `${label} must have invalid format`);
 
 export const date = (value: string, label: string) =>
-  new Validation(!PATTERNS.DATE.test(value), `${label} have invalid date format`);
+  new Validation(!PATTERNS.DATE.test(value), `${label} have invalid format`);
 
 export const email = (value: string, label: string) =>
-  new Validation(!PATTERNS.EMAIL.test(value), `${label} have invalid email format`);
+  new Validation(!PATTERNS.EMAIL.test(value), `${label} have invalid format`);
 
 export const nmb = (value: string, label: string) =>
-  new Validation(!PATTERNS.NMB.test(value), `${label} have invalid email format`);
+  new Validation(!PATTERNS.NMB.test(value), `${label} have invalid format`);
 
 export const atleastOneChecked = (key: string, label: string) => (items: any[]) =>
   new Validation(!items.some(item => !!item[key]), `Atleast one ${label} must be checked`);

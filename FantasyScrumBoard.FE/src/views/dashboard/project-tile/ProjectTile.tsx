@@ -10,6 +10,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { BoardIcon, MapIcon } from 'shared/icons';
 
 import csx from './ProjectTile.scss';
+import { Button } from 'shared/ui';
 
 interface ProjectTileProps {
   name: string;
@@ -44,18 +45,7 @@ export const ProjectTile = ({ name, id, onEdit }: ProjectTileProps) => {
       <h3>{name}</h3>
       <div style={{ backgroundColor: 'white' }}>
         <span>
-          <a href={`${window.location.origin}/project/${id}/board`}>
-            <Tooltip title="Go to board view">
-              <IconButton color="secondary">
-                <BoardIcon />
-              </IconButton>
-            </Tooltip>
-          </a>
-          <Tooltip title="Go to map view">
-            <IconButton color="secondary">
-              <MapIcon />
-            </IconButton>
-          </Tooltip>
+          <a href={`${window.location.origin}/main/project/${id}/details`}>DETAILS</a>
         </span>
       </div>
       <Menu

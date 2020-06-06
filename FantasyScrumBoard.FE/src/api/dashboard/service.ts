@@ -16,7 +16,7 @@ const getProjectItems = (count: number): Project[] =>
 export const getProjects = (): Promise<Project[]> => {
   return new Promise((resolve,  reject) => {
     setTimeout(() => {
-      resolve(getProjectItems(10))
+      resolve(getProjectItems(4))
     }, 1500);
   });
 }

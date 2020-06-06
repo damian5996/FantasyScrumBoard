@@ -3,19 +3,21 @@ import React from 'react';
 import {
   TableContainer,
   Table,
-  Paper,
   TableHead,
   TableRow,
   TableCell,
-  TableBody
+  TableBody,
+  Button
 } from '@material-ui/core';
 
 import { LatestNewsProps } from '.';
 
+import csx from './LatestNews.scss';
+
 export const LatestNews = ({news}: LatestNewsProps) => {
   return (
-    <TableContainer component={Paper}>
-      <Table>
+    <TableContainer>
+      <Table className={csx.table}>
         <TableHead>
           <TableRow>
             <TableCell>Date</TableCell>
@@ -31,7 +33,7 @@ export const LatestNews = ({news}: LatestNewsProps) => {
               </TableCell>
               <TableCell>{row.news}</TableCell>
               <TableCell>
-                <button>show on map</button>
+                <Button className={csx.button}>Show on map</Button>
               </TableCell>
             </TableRow>
           ))}

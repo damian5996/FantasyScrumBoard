@@ -4,9 +4,11 @@ import ProjectForm from 'features/project-form';
 import { Button, CircularProgress } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 
-import { ProjectTile, CurrentTasks, LatestNews, DataWrapper } from '.';
+import { ProjectTile, CurrentTasks, LatestNews } from '.';
 
 import { WorkItem, getWorkItemsDashboard, News, getNews, Project, getProjects } from 'api';
+
+import { DataWrapper } from 'shared/utils';
 
 import csx from './Dashboard.scss';
 

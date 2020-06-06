@@ -8,3 +8,5 @@ export const addSprint = (sprint: {
 }) => {
   call<Sprint>(coreInstance.post('Sprint', sprint));
 };
+
+export const getSprints = () => call<Sprint[]>(coreInstance.get('Sprint'));

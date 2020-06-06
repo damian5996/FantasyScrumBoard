@@ -1,5 +1,7 @@
 ﻿using FantasyScrumBoard.BE.BL.Services;
 using FantasyScrumBoard.BE.BL.Services.Interfaces;
+using FantasyScrumBoard.BE.BL.User;
+using FantasyScrumBoard.BE.BL.User.Interfaces;
 using FantasyScrumBoard.BE.DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -20,7 +22,8 @@ namespace FantasyScrumBoard.BE.BL
         public static IServiceCollection AddBusinessLogicDependencies(this IServiceCollection services)
         {
             return services
-                .AddScoped<IJwtService, JwtService>();
+                .AddScoped<IJwtService, JwtService>()
+                .AddScoped<IUserFacebookAuthenticationLogic, UserFacebookAuthenticationLogic>();
         }
 
         public static IApplicationBuilder BusinessLogicConfigure(this IApplicationBuilder app)

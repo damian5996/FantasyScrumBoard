@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using FantasyScrumBoard.BE.BL;
 using FantasyScrumBoard.BE.Shared;
 using FantasyScrumBoard.BE.Shared.Configuration;
-using FantasyScrumBoard.BE.Shared.Constants;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

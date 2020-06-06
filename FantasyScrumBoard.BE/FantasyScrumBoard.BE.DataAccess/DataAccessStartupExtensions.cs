@@ -1,7 +1,7 @@
 ﻿using FantasyScrumBoard.BE.DataAccess.Connection;
 using FantasyScrumBoard.BE.DataAccess.Repositories;
 using FantasyScrumBoard.BE.DataAccess.Repositories.Interfaces;
-using FantasyScrumBoard.BE.Shared.Constants;
+using FantasyScrumBoard.BE.Shared;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -29,6 +29,7 @@ namespace FantasyScrumBoard.BE.DataAccess
                 .AddScoped<IProjectRepository, ProjectRepository>()
                 .AddScoped<ISprintRepository, SprintRepository>()
                 .AddScoped<IUserRepository, UserRepository>()
+                .AddScoped<IFacebookApiRepository, FacebookApiRepository>()
                 .AddScoped<IWorkItemRepository, WorkItemRepository>()
                 .AddScoped<IUnitOfWork, UnitOfWork>();
         }

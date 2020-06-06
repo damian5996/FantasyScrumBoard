@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace FantasyScrumBoard.BE.Shared.Dto
 {
-    public class UserDto
+    public class UserWithTokenDto
     {
         public long Id { get; set; }
         public string FirstName { get; set; }
@@ -11,7 +13,8 @@ namespace FantasyScrumBoard.BE.Shared.Dto
         public int Level { get; set; }
         public string Nick { get; set; }
         public int Exp { get; set; }
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreateAt { get; set; }
         public DateTime? DeletedAt { get; set; }
+        public JwtDto JwtDto { get; set; }
     }
 }

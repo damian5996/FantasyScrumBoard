@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using FantasyScrumBoard.BE.BL.Common;
+﻿using FantasyScrumBoard.BE.BL.Common;
 using FantasyScrumBoard.BE.DataAccess;
 using FantasyScrumBoard.BE.Shared;
 using FantasyScrumBoard.BE.Shared.BindingModels;
 using FantasyScrumBoard.BE.Shared.Enums;
 using FantasyScrumBoard.BE.Shared.Exceptions;
+using System.Linq;
 
 namespace FantasyScrumBoard.BE.BL.Sprint.Validator
 {

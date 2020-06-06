@@ -12,6 +12,7 @@
   border: solid 1px #979797;
   background-color: #ffffff;
   color: #000;
+  
   h3 {
     margin-top: 50px;
     font-weight: normal;
@@ -36,7 +37,26 @@
   }
 }
 
-// .projectTile:not(:first-child):not(:last-child) {
-//   margin-left: 16px;
-//   margin-right: 16px;
-// }
+.addNew {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 152px;
+  height: 152px;
+  border-radius: 8px;
+  border: solid 1px #979797;
+  background-color: #ffffff;
+  color: #000;
+
+  button {
+    background-color: rgba(#d30000, 0.6);
+    width: 120px;
+    height: 120px;
+    box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.5);
+    color: white;
+  }
+
+  button:hover {
+    background-color: #d30000;
+  }
+}

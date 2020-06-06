@@ -4,14 +4,26 @@ import { IconButton } from '@material-ui/core';
 
 import { BoardIcon, MapIcon } from 'shared/icons';
 
+import AddIcon from '@material-ui/icons/Add';
+
 import csx from './ProjectTile.scss';
 
 interface ProjectTileProps {
-  name: string;
-  id: number;
+  name?: string;
+  id?: number;
+  addNew?: boolean;
 }
 
-export const ProjectTile = ({ name, id }: ProjectTileProps) => {
+export const ProjectTile = ({ name, id, addNew }: ProjectTileProps) => {
+  if (addNew)
+    return (
+      <div className={csx.addNew}>
+          <IconButton>
+            <AddIcon fontSize="large"/>
+          </IconButton>
+      </div>
+    );
+
   return (
     <div className={csx.projectTile}>
       <h3>{name}</h3>

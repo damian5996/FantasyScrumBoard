@@ -28,7 +28,7 @@ export const LatestNews = ({news}: LatestNewsProps) => {
         <TableBody>
           {news.map((row, idx) => (
             <TableRow key={idx}>
-              <TableCell component="th" scope="row">
+              <TableCell>
                 {row.date.toISOString()}
               </TableCell>
               <TableCell>{row.news}</TableCell>

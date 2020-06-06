@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-import { Button } from '@material-ui/core';
+import { Button, CircularProgress } from '@material-ui/core';
 
-import { ProjectTile, CurrentTasks, LatestNews, DataWrapper } from '.';
+import { ProjectTile, CurrentTasks, LatestNews, DataWrapper, Sidebar } from '.';
 
 import { getProjects, WorkItem, getWorkItemsDashboard, News, getNews, Project } from 'api';
 
@@ -100,43 +100,47 @@ const Dashboard = () => {
   return (
     <div className={csx.dashboard}>
       <div className={csx.dashboardWrapper}>
-        <section>
-          <div className={csx.header}>
-            <span className={csx.headerActive}>PROJECTS&nbsp;</span> <span>&nbsp;/&nbsp;</span>{' '}
-            <span>&nbsp;ALL PROJECTS</span>
-          </div>
-          <div className={csx.projects}>
-            {projects.isLoading && 'Loading projects'}
-            {projects.data.length > 0 &&
-              projects.data.map((project) => {
-                return <ProjectTile key={project.id} name={project.name} id={project.id} />;
-              })}
-          </div>
-        </section>
+          <Sidebar />
+        <div style={{marginLeft: '88px', marginTop: '138px', marginRight: '88px'}}>
+          <section>
+            <div className={csx.header}>
+              <span className={csx.headerActive}>PROJECTS&nbsp;</span> <span>&nbsp;/&nbsp;</span>{' '}
+              <span>&nbsp;ALL PROJECTS</span>
+            </div>
+            <div className={csx.projects}>
+              {projects.isLoading &&  <CircularProgress color="secondary" />}
+              {projects.data.length > 0 &&
+                projects.data.map((project) => {
+                  return <ProjectTile key={project.id} name={project.name} id={project.id} />;
+                })}
+                <ProjectTile addNew />
+            </div>
+          </section>
 
-        <section>
-          <div className={csx.header} style={{ marginTop: '49px' }}>
-            <span className={csx.headerActive}>CURRENT TASKS&nbsp;</span> <span>&nbsp;/&nbsp;</span>{' '}
-            <span>&nbsp;MY TASKS</span>
-          </div>
-          <div className={csx.center}>
-            {workItems.isLoading && 'Loading current tasks'}
-            {workItems.data.length > 0 && <CurrentTasks workItems={workItems.data} />}
-          </div>
-          {!workItems.isLoading && <Button className={csx.button}>More tasks</Button>}
-        </section>
+          <section>
+            <div className={csx.header} style={{ marginTop: '49px' }}>
+              <span className={csx.headerActive}>CURRENT TASKS&nbsp;</span>{' '}
+              <span>&nbsp;/&nbsp;</span> <span>&nbsp;MY TASKS</span>
+            </div>
+            <div className={csx.center}>
+              {workItems.isLoading && <CircularProgress color="secondary" />}
+              {workItems.data.length > 0 && <CurrentTasks workItems={workItems.data} />}
+            </div>
+            {!workItems.isLoading && <Button className={csx.button}>More tasks</Button>}
+          </section>
 
-        <section>
-          <div className={csx.header} style={{ marginTop: '49px' }}>
-            <span className={csx.headerActive}>LATEST NEWS&nbsp;</span> <span>&nbsp;/&nbsp;</span>{' '}
-            <span>&nbsp;ACHIEVEMENTS</span>
-          </div>
-          <div className={csx.center}>
-            {news.isLoading && 'Loading latest news'}
-            {news.data.length > 0 && <LatestNews news={news.data} />}
-          </div>
-          {!news.isLoading && <Button className={csx.button}>More news</Button>}
-        </section>
+          <section>
+            <div className={csx.header} style={{ marginTop: '49px' }}>
+              <span className={csx.headerActive}>LATEST NEWS&nbsp;</span> <span>&nbsp;/&nbsp;</span>{' '}
+              <span>&nbsp;ACHIEVEMENTS</span>
+            </div>
+            <div className={csx.center}>
+              {news.isLoading && <CircularProgress color="secondary" />}
+              {news.data.length > 0 && <LatestNews news={news.data} />}
+            </div>
+            {!news.isLoading && <Button className={csx.button}>More news</Button>}
+          </section>
+        </div>
       </div>
     </div>
   );

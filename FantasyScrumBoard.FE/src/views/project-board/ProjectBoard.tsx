@@ -34,12 +34,8 @@ const move = (source, destination, droppableSource, droppableDestination) => {
 };
 
 const getItemStyle = (isDragging, draggableStyle) => ({
-  background: isDragging ? 'lightgreen' : 'grey',
+  background: isDragging ? '#5e0042' : 'linear-gradient(to top right, #4d0043, #1a006c)',
   ...draggableStyle
-});
-
-const getTasksStyle = isDraggingOver => ({
-  background: isDraggingOver ? 'lightblue' : 'lightgrey'
 });
 
 function ProjectBoardView() {
@@ -102,44 +98,43 @@ function ProjectBoardView() {
                 {(provided, snapshot) => (
                   <div
                     ref={provided.innerRef}
-                    style={getTasksStyle(snapshot.isDraggingOver)}
-                    className={csx.tasks}
+                    className={csx.boardColumn}
                     {...provided.droppableProps}
                   >
                     <p>{taskStatusesLabels[ind]}</p>
-                    {el.map((item, index) => (
-                      <Draggable key={item.id} draggableId={item.id} index={index}>
-                        {(provided, snapshot) => (
-                          <div
-                            ref={provided.innerRef}
-                            className={csx.task}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
-                          >
+
+                    <div className={csx.tasks}>
+                      {el.map((item, index) => (
+                        <Draggable key={item.id} draggableId={item.id} index={index}>
+                          {(provided, snapshot) => (
                             <div
-                              style={{
-                                display: 'flex',
-                                justifyContent: 'space-around'
-                              }}
+                              ref={provided.innerRef}
+                              className={csx.task}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              style={getItemStyle(
+                                snapshot.isDragging,
+                                provided.draggableProps.style
+                              )}
                             >
-                              {item.content}
-                              <button
-                                type="button"
-                                onClick={() => {
-                                  const newState = [...state];
-                                  newState[ind].splice(index, 1);
-                                  setState(newState.filter(group => group.length));
-                                }}
-                              >
-                                delete
-                              </button>
+                              <span className={csx.name}>{item.name}</span>
+                              <span className={csx.description}>{item.description}</span>
+                              {/* <button
+                                  type="button"
+                                  onClick={() => {
+                                    const newState = [...state];
+                                    newState[ind].splice(index, 1);
+                                    setState(newState.filter(group => group.length));
+                                  }}
+                                >
+                                  delete
+                                </button> */}
                             </div>
-                          </div>
-                        )}
-                      </Draggable>
-                    ))}
-                    {provided.placeholder}
+                          )}
+                        </Draggable>
+                      ))}
+                      {provided.placeholder}
+                    </div>
                   </div>
                 )}
               </Droppable>

@@ -7,7 +7,7 @@ using FantasyScrumBoard.BE.Shared.Exceptions;
 
 namespace FantasyScrumBoard.BE.BL.Project.Validators
 {
-    public class ProjectExistenceValidator : IValidator<SprintAddBindingModel>
+    public class ProjectExistenceValidator : IValidator<SprintAddBindingModel>, IValidator<long>
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -18,10 +18,10 @@ namespace FantasyScrumBoard.BE.BL.Project.Validators
 
         public void Validate(SprintAddBindingModel param)
         {
-            ValidateProjectExistenceById(param.Project);
+            Validate(param.Project);
         }
 
-        private void ValidateProjectExistenceById(long projectId)
+        public void Validate(long projectId)
         {
             if (!_unitOfWork.Project.GetAll().Any(p => p.Id == projectId))
             {

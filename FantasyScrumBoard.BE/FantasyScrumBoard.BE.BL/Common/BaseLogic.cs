@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using FantasyScrumBoard.BE.DataAccess;
-using FantasyScrumBoard.BE.Shared.Constants;
+using FantasyScrumBoard.BE.Shared;
 using FantasyScrumBoard.BE.Shared.Enums;
 using FantasyScrumBoard.BE.Shared.Exceptions;
 using FantasyScrumBoard.BE.Shared.ViewModels;

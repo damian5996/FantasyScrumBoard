@@ -366,12 +366,12 @@ namespace FantasyScrumBoard.BE.DataAccess.Migrations
                     b.HasOne("FantasyScrumBoard.BE.Shared.Models.User", "Mvp")
                         .WithMany("Sprints")
                         .HasForeignKey("MvpId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("FantasyScrumBoard.BE.Shared.Models.Project", "Project")
                         .WithMany("Sprints")
                         .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 

@@ -12,10 +12,12 @@ import {
 
 import { CurrentTasksProps } from '.';
 
+import csx from './CurrentTasks.scss';
+
 export const CurrentTasks = ({workItems}: CurrentTasksProps) => {
   return (
-    <TableContainer component={Paper}>
-      <Table>
+    <TableContainer>
+      <Table className={csx.table}>
         <TableHead>
           <TableRow>
             <TableCell>Project Name</TableCell>
@@ -27,7 +29,7 @@ export const CurrentTasks = ({workItems}: CurrentTasksProps) => {
         <TableBody>
         {workItems.map((row, idx) => (
             <TableRow key={idx}>
-              <TableCell component="th" scope="row">
+              <TableCell>
                 {row.projectId}
               </TableCell>
               <TableCell>{row.description}</TableCell>

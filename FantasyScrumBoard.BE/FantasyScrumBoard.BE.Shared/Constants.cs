@@ -1,4 +1,4 @@
-﻿namespace FantasyScrumBoard.BE.Shared.Constants
+﻿namespace FantasyScrumBoard.BE.Shared
 {
     public static class Constants
     {
@@ -24,6 +24,9 @@
         public static class Configuration
         {
             public const string JwtRoot = "jwt-configuration";
+
+            public const string FacebookAuthRoot = "facebook-auth";
+            public const string FacebookApiConfigurationRoot = "facebook-api-configuration";
         }
     }
 }

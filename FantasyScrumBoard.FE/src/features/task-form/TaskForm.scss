@@ -1,0 +1,28 @@
+@import 'styles/mixins';
+
+.taskForm {
+  width: 420px;
+  border-radius: 4px;
+  background: linear-gradient(to top right, #4d0043, #1a006c);
+  padding: 32px;
+
+  & > p {
+    margin-bottom: 24px;
+    font-size: 32px;
+    font-weight: 900;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.44;
+    letter-spacing: normal;
+    color: #ffffff;
+  }
+
+  .formField {
+    margin-bottom: 22px;
+  }
+
+  & > button {
+    margin-top: 24px;
+    width: 100%;
+  }
+}

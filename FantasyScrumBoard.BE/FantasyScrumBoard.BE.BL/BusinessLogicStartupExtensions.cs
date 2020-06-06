@@ -2,6 +2,8 @@
 using FantasyScrumBoard.BE.BL.Project.Interfaces;
 using FantasyScrumBoard.BE.BL.Services;
 using FantasyScrumBoard.BE.BL.Services.Interfaces;
+using FantasyScrumBoard.BE.BL.User;
+using FantasyScrumBoard.BE.BL.User.Interfaces;
 using FantasyScrumBoard.BE.DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -26,7 +28,8 @@ namespace FantasyScrumBoard.BE.BL
                 .AddTransient<IHttpContextAccessor, HttpContextAccessor>()
                 .AddScoped<IJwtService, JwtService>()
                 .AddScoped<ICurrentUserService, CurrentUserService>()
-                .AddScoped<IProjectAddBusinessLogic, ProjectAddBusinessLogic>();
+                .AddScoped<IProjectAddBusinessLogic, ProjectAddBusinessLogic>()
+                .AddScoped<IUserFacebookAuthenticationLogic, UserFacebookAuthenticationLogic>();
         }
 
         public static IApplicationBuilder BusinessLogicConfigure(this IApplicationBuilder app)

@@ -1,4 +1,5 @@
-﻿using FantasyScrumBoard.BE.Shared;
+﻿using System.Linq;
+using FantasyScrumBoard.BE.Shared;
 using FantasyScrumBoard.BE.Shared.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +19,11 @@ namespace FantasyScrumBoard.BE.Controllers
             return result.ExceptionType != null
                 ? StatusCode((int) result.ExceptionType, result.Error)
                 : StatusCode(500, Constants.ErrorMessage.Fatal);
+        }
+
+        protected IActionResult ModelStateError()
+        {
+            return BadRequest(ModelState.FirstOrDefault().Value.Errors.FirstOrDefault()?.ErrorMessage ?? "Model validation failed");
         }
     }
 }

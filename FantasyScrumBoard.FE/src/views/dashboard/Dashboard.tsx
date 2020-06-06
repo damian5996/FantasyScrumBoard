@@ -103,9 +103,17 @@ const Dashboard = () => {
   };
 
   const startProjectEdit = (id: number) => {
-    const project = projects.data.find((p) => p.id === id);
+    const project = projects.data.find(p => p.id === id);
 
     setProjectFormData({ isOpen: true, data: project });
+  };
+
+  const onProjectAdd = (project: Project) => {
+    setProjectFormData({ isOpen: false, data: null });
+    setProjects({
+      ...projects,
+      data: [...projects.data, project]
+    });
   };
 
   useEffect(() => {
@@ -119,6 +127,8 @@ const Dashboard = () => {
       {projectFormData.isOpen && (
         <ProjectForm
           data={projectFormData.data}
+          onAdd={onProjectAdd}
+          onEdit={() => {}}
           onClose={() => {
             setProjectFormData({
               isOpen: false,
@@ -161,7 +171,7 @@ const Dashboard = () => {
                       data: null
                     });
                   }}
-                  style={{backgroundColor: '#d30000', marginLeft: '10px', color: 'white'}}
+                  style={{ backgroundColor: '#d30000', marginLeft: '10px', color: 'white' }}
                 >
                   <AddIcon />
                 </Button>
@@ -169,7 +179,7 @@ const Dashboard = () => {
               <div className={csx.projects}>
                 {projects.isLoading && <CircularProgress color="secondary" />}
                 {projects.data.length > 0 &&
-                  projects.data.map((project) => {
+                  projects.data.map(project => {
                     return (
                       <ProjectTile
                         key={project.id}

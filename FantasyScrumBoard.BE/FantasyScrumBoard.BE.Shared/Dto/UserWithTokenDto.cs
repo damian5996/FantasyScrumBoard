@@ -13,7 +13,7 @@ namespace FantasyScrumBoard.BE.Shared.Dto
         public int Level { get; set; }
         public string Nick { get; set; }
         public int Exp { get; set; }
-        public DateTime CreateAt { get; set; }
+        public DateTime CreatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
         public JwtDto JwtDto { get; set; }
     }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace FantasyScrumBoard.BE.Shared.Models
 {
@@ -15,8 +14,8 @@ namespace FantasyScrumBoard.BE.Shared.Models
         public DateTime CreatedAt { get; set; }
         public DateTime? EditedAt { get; set; }
 
-        public virtual ICollection<Sprint> Sprints { get; set; }
-        public virtual ICollection<WorkItem> WorkItems { get; set; }
-        public virtual ICollection<UserProject> UserProjects { get; set; }
+        public virtual ICollection<Sprint> Sprints { get; set; } = new HashSet<Sprint>();
+        public virtual ICollection<WorkItem> WorkItems { get; set; } = new HashSet<WorkItem>();
+        public virtual ICollection<UserProject> UserProjects { get; set; } = new HashSet<UserProject>();
     }
 }

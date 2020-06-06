@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using FantasyScrumBoard.BE.Shared.Dto;
-using FantasyScrumBoard.BE.Shared.Models;
 
 namespace FantasyScrumBoard.BE.Shared.ViewModels
 {
@@ -14,7 +12,7 @@ namespace FantasyScrumBoard.BE.Shared.ViewModels
         public DateTime CreatedAt { get; set; }
         public int Number { get; set; }
 
-        public int Mvp { get; set; }
-        public IEnumerable<WorkItem> WorkItems { get; set; }
+        public UserViewModel Mvp { get; set; }
+        public IEnumerable<WorkItemViewModel> WorkItems { get; set; }
     }
 }

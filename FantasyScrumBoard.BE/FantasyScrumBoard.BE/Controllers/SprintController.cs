@@ -11,11 +11,13 @@ namespace FantasyScrumBoard.BE.Controllers
     {
         private readonly ISprintAddBusinessLogic _sprintAddBusinessLogic;
         private readonly ISprintCloseBusinessLogic _sprintCloseBusinessLogic;
+        private readonly ISprintGetByIdBusinessLogic _sprintGetByIdBusinessLogic;
 
-        public SprintController(ISprintAddBusinessLogic sprintAddBusinessLogic, ISprintCloseBusinessLogic sprintCloseBusinessLogic)
+        public SprintController(ISprintAddBusinessLogic sprintAddBusinessLogic, ISprintCloseBusinessLogic sprintCloseBusinessLogic, ISprintGetByIdBusinessLogic sprintGetByIdBusinessLogic)
         {
             _sprintAddBusinessLogic = sprintAddBusinessLogic;
             _sprintCloseBusinessLogic = sprintCloseBusinessLogic;
+            _sprintGetByIdBusinessLogic = sprintGetByIdBusinessLogic;
         }
 
         [HttpPost]
@@ -35,6 +37,14 @@ namespace FantasyScrumBoard.BE.Controllers
         public async Task<IActionResult> CloseSprintAsync([FromRoute] long id)
         {
             var result = await _sprintCloseBusinessLogic.ExecuteAsync(id);
+
+            return CreateResponse(result);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetByIdAsync([FromRoute] long id)
+        {
+            var result = await _sprintGetByIdBusinessLogic.ExecuteAsync(id);
 
             return CreateResponse(result);
         }

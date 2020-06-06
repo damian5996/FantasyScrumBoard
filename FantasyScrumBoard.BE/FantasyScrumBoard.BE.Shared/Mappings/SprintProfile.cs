@@ -17,6 +17,7 @@ namespace FantasyScrumBoard.BE.Shared.Mappings
                 .ForMember(dest => dest.WorkItems, opt => opt.Ignore());
             CreateMap<Sprint, SprintDto>();
             CreateMap<SprintDto, SprintViewModel>();
+            CreateMap<SprintDto, SprintDetailsViewModel>();
 
             CreateMap<long?, SprintDto>()
                 .ConstructUsing(id => id != null ? new SprintDto {Id = (long)id} : null);

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using FantasyScrumBoard.BE.Shared.Dto;
 
 namespace FantasyScrumBoard.BE.DataAccess.Repositories.Interfaces
@@ -7,5 +8,6 @@ namespace FantasyScrumBoard.BE.DataAccess.Repositories.Interfaces
     {
         Task<long> InsertAsync(ProjectDto projectDto);
         Task<ProjectDto> GetByIdAsync(long projectId);
+        Task<IEnumerable<ProjectDto>> GetListByUserIdAsync(long userId);
     }
 }

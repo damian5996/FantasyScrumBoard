@@ -1,0 +1,85 @@
+@import 'styles/mixins';
+
+.select {
+  @include row;
+  padding: 0 !important;
+
+  .selectedItems {
+    @include label;
+    @include row;
+    width: 100%;
+    overflow-x: hidden;
+    color: inherit;
+    padding: 14px;
+    margin-right: 14px;
+
+    .selectedItem {
+      font-family: $fontPrimary;
+      font-size: 16px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.5;
+      letter-spacing: normal;
+      color: #444041;
+      border: none;
+      padding: 0 !important;
+
+      &:not(:last-of-type) {
+        margin-right: 6px;
+      }
+    }
+
+    .placeholder {
+      font-family: $fontPrimary;
+      font-size: 16px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.5;
+      letter-spacing: normal;
+      color: #444041;
+    }
+  }
+
+  .toggleBtn {
+    @include centered;
+    height: 100%;
+    border-radius: 0;
+    color: $secondary;
+    border-left: 1px solid $secondary;
+    min-width: 52px;
+
+    & > svg {
+      margin: 0;
+      font-size: 28px;
+    }
+  }
+}
+
+.selectMenu {
+  width: 400px;
+  border-radius: 0 !important;
+  box-shadow: $shadowPrimary !important;
+  background: $white !important;
+  color: #333333 !important;
+  margin: 4px 0 0 1px;
+
+  ul {
+    @include col;
+    padding: 6px 0;
+
+    label {
+      margin: 0;
+      padding: 0 6px;
+
+      &:focus {
+        outline: none;
+      }
+
+      & > span:first-of-type {
+        padding: 12px;
+      }
+    }
+  }
+}

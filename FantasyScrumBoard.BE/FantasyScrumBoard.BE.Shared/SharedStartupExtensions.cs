@@ -20,7 +20,7 @@ namespace FantasyScrumBoard.BE.Shared
             IConfiguration configuration)
         {
             return services
-                .AddSingleton(configuration.GetSection(Constants.Constants.Configuration.JwtRoot).Get<JwtConfiguration>());
+                .AddSingleton(configuration.GetSection(Constants.Configuration.JwtRoot).Get<JwtConfiguration>());
         }
     }
 }

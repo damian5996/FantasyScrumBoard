@@ -1,6 +1,5 @@
 ﻿using FantasyScrumBoard.BE.BL.Services.Interfaces;
 using FantasyScrumBoard.BE.Shared.Configuration;
-using FantasyScrumBoard.BE.Shared.Constants;
 using FantasyScrumBoard.BE.Shared.Dto;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -11,6 +10,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using FantasyScrumBoard.BE.DataAccess;
+using FantasyScrumBoard.BE.Shared;
 
 namespace FantasyScrumBoard.BE.BL.Services
 {

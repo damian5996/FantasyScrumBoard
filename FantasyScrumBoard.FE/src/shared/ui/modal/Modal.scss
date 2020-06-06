@@ -5,7 +5,7 @@
   top: 0;
   left: 0;
   z-index: 1;
-  background: rgba(0, 0, 0, 0.14);
+  background: rgba(0, 0, 0, 0.29);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,8 +14,8 @@
 
   & > button {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 22px;
+    right: 22px;
     background: $secondary !important;
   }
 }

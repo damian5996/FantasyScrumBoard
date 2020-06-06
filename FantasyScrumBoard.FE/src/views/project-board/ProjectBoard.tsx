@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import MoreHoriz from '@material-ui/icons/MoreHoriz';
+import AddIcon from '@material-ui/icons/Add';
+import { IconButton, Menu, MenuItem } from '@material-ui/core';
 
 import { getTasks } from 'api';
 
+import AddTaskForm from 'features/task-form';
+
 import csx from './ProjectBoard.scss';
-import { IconButton, Menu, MenuItem } from '@material-ui/core';
 
 const taskStatusesLabels = ['To do', 'In progress', 'Code review', 'Testing', 'Done'];
 
@@ -41,6 +44,10 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 });
 
 function ProjectBoardView() {
+  const [taskFormData, setTaskFormData] = useState({
+    isOpen: false,
+    data: null
+  });
   const [menuData, setMenuData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [state, setState] = useState([]);
@@ -95,7 +102,7 @@ function ProjectBoardView() {
       newState[sInd] = result[sInd];
       newState[dInd] = result[dInd];
 
-      setState(newState.filter(group => group.length));
+      setState(newState);
     }
   }
 
@@ -109,7 +116,17 @@ function ProjectBoardView() {
         onClose={handleClose}
       >
         <MenuItem>Details</MenuItem>
-        <MenuItem>Edit</MenuItem>
+        <MenuItem
+          onClick={() => {
+            setTaskFormData({
+              isOpen: true,
+              data: menuData
+            });
+            handleClose();
+          }}
+        >
+          Edit
+        </MenuItem>
         <MenuItem
           onClick={() => {
             const newState = state.map((s, sidx) => {
@@ -130,6 +147,18 @@ function ProjectBoardView() {
         </MenuItem>
       </Menu>
 
+      {taskFormData.isOpen && (
+        <AddTaskForm
+          data={taskFormData.data}
+          onClose={() => {
+            setTaskFormData({
+              isOpen: false,
+              data: null
+            });
+          }}
+        />
+      )}
+
       <div className={csx.projectBoardView}>
         {isLoading ? (
           <CircularProgress color="secondary" />
@@ -144,7 +173,21 @@ function ProjectBoardView() {
                       className={csx.boardColumn}
                       {...provided.droppableProps}
                     >
-                      <p>{taskStatusesLabels[ind]}</p>
+                      <p>
+                        {taskStatusesLabels[ind]}
+
+                        <IconButton
+                          size="medium"
+                          onClick={() =>
+                            setTaskFormData({
+                              isOpen: true,
+                              data: null
+                            })
+                          }
+                        >
+                          <AddIcon />
+                        </IconButton>
+                      </p>
 
                       <div className={csx.tasks}>
                         {el.map((item, index) => (

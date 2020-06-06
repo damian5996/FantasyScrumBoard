@@ -20,5 +20,4 @@
     <ProjectReference Include="..\FantasyScrumBoard.BE.Shared\FantasyScrumBoard.BE.Shared.csproj" />
   </ItemGroup>
 
-
 </Project>

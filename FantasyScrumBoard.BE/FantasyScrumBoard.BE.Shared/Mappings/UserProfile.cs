@@ -3,9 +3,6 @@ using FantasyScrumBoard.BE.Shared.Dto;
 using FantasyScrumBoard.BE.Shared.Dto.Facebook;
 using FantasyScrumBoard.BE.Shared.Models;
 using FantasyScrumBoard.BE.Shared.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FantasyScrumBoard.BE.Shared.Mappings
 {
@@ -14,12 +11,15 @@ namespace FantasyScrumBoard.BE.Shared.Mappings
         public UserProfile()
         {
             CreateMap<UserWithTokenDto, UserWithTokenViewModel>()
-                .ForMember(x => x.ExpirationDate, opt => opt.MapFrom(x => x.JwtDto.ExpirationDate))
-                .ForMember(x => x.Token, opt => opt.MapFrom(x => x.JwtDto.Token))
-                .ForMember(x => x.RefreshToken, opt => opt.MapFrom(x => x.JwtDto.RefreshToken));
+                .ForMember(dest => dest.ExpirationDate, opt => opt.MapFrom(src => src.JwtDto.ExpirationDate))
+                .ForMember(dest => dest.Token, opt => opt.MapFrom(src => src.JwtDto.Token))
+                .ForMember(dest => dest.RefreshToken, opt => opt.MapFrom(src => src.JwtDto.RefreshToken));
             CreateMap<UserDto, UserWithTokenDto>();
             CreateMap<FacebookUserDto, User>();
             CreateMap<User, UserDto>();
+
+            CreateMap<UserProject, ProjectMemberDto>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.UserId));
         }
     }
 }

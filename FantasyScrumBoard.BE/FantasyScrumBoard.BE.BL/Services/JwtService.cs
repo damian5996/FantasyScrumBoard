@@ -1,6 +1,5 @@
 ﻿using FantasyScrumBoard.BE.BL.Services.Interfaces;
 using FantasyScrumBoard.BE.Shared.Configuration;
-using FantasyScrumBoard.BE.Shared.Constants;
 using FantasyScrumBoard.BE.Shared.Dto;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -11,6 +10,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using FantasyScrumBoard.BE.DataAccess;
+using FantasyScrumBoard.BE.Shared;
 
 namespace FantasyScrumBoard.BE.BL.Services
 {
@@ -35,14 +35,13 @@ namespace FantasyScrumBoard.BE.BL.Services
             _unitOfWork = unitOfWork;
         }
 
-        public JwtDto GenerateToken(UserDto user)
+        public JwtDto GenerateToken(UserDto userDto)
         {
-            user = GetUser; //test
             var jwtExpirationDate = DateTime.UtcNow.AddHours(_jwtConfiguration.TokenValidHours);
             return new JwtDto
             {
-                Token = GetToken(user, false),
-                RefreshToken = GetToken(user, true),
+                Token = GetToken(userDto, false),
+                RefreshToken = GetToken(userDto, true),
                 ExpirationDate = jwtExpirationDate
             };
         }
@@ -67,7 +66,7 @@ namespace FantasyScrumBoard.BE.BL.Services
 
             var userId = claimsPrincipal.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Sid);
 
-            var user = userId != null
+            var userDto = userId != null
                 ? GetUser // test user
                 : throw new UnauthorizedAccessException(Constants.ErrorMessage.InvalidRefreshToken);
 
@@ -75,8 +74,8 @@ namespace FantasyScrumBoard.BE.BL.Services
             
             return new JwtDto
             {
-                Token = GetToken(user, false),
-                RefreshToken = GetToken(user, true),
+                Token = GetToken(userDto, false),
+                RefreshToken = GetToken(userDto, true),
                 ExpirationDate = jwtExpirationDate
             };
         }
@@ -91,12 +90,12 @@ namespace FantasyScrumBoard.BE.BL.Services
         private SigningCredentials Credentials(bool isRefresh) =>
             new SigningCredentials(isRefresh ? RefreshTokenSecurityKey : SecurityKey, SecurityAlgorithms.HmacSha256);
 
-        private string GetToken(UserDto user, bool isRefresh, DateTime? expiration = null)
+        private string GetToken(UserDto userDto, bool isRefresh, DateTime? expiration = null)
         {
             var token = new JwtSecurityToken(
                 !isRefresh ? _jwtConfiguration.Issuer : null,
                 !isRefresh ? _jwtConfiguration.Audience : null,
-                claims: isRefresh ? RefreshTokenClaims(user.Id) : TokenClaims(user),
+                claims: isRefresh ? RefreshTokenClaims(userDto.Id) : TokenClaims(userDto),
                 expires: expiration ?? DateTime.UtcNow.AddHours(_jwtConfiguration.TokenValidHours),
                 signingCredentials: Credentials(isRefresh));
 
@@ -109,14 +108,14 @@ namespace FantasyScrumBoard.BE.BL.Services
             new Claim(ClaimTypes.Hash, Guid.NewGuid().ToString())
         };
 
-        private static IEnumerable<Claim> TokenClaims(UserDto user) => new[]
+        private static IEnumerable<Claim> TokenClaims(UserDto userDto) => new[]
         {
             new Claim(ClaimTypes.Hash, Guid.NewGuid().ToString()),
-            new Claim(ClaimTypes.Sid, user.Id.ToString()),
-            new Claim(ClaimTypes.Email, user.Email),
-            new Claim(ClaimTypes.GivenName, user.FirstName),
-            new Claim(ClaimTypes.Surname, user.LastName),
-            new Claim(ClaimTypes.Name, user.Nick),
+            new Claim(ClaimTypes.Sid, userDto.Id.ToString()),
+            new Claim(ClaimTypes.Email, userDto.Email),
+            new Claim(ClaimTypes.GivenName, userDto.FirstName),
+            new Claim(ClaimTypes.Surname, userDto.LastName),
+            new Claim(ClaimTypes.Name, userDto.Nick ?? string.Empty),
         };
     }
 }

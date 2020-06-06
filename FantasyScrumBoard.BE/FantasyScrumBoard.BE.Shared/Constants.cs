@@ -1,4 +1,4 @@
-﻿namespace FantasyScrumBoard.BE.Shared.Constants
+﻿namespace FantasyScrumBoard.BE.Shared
 {
     public static class Constants
     {
@@ -10,6 +10,7 @@
 
             public const string ExpiredRefreshToken = "Expired refresh token";
             public const string InvalidRefreshToken = "Invalid refresh token";
+            public const string NotFoundTemplate = "{0} [{1}] not found!";
         }
 
         public static class Database
@@ -20,6 +21,9 @@
         public static class Configuration
         {
             public const string JwtRoot = "jwt-configuration";
+
+            public const string FacebookAuthRoot = "facebook-auth";
+            public const string FacebookApiConfigurationRoot = "facebook-api-configuration";
         }
     }
 }

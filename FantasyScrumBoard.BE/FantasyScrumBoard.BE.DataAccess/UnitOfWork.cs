@@ -8,9 +8,15 @@ namespace FantasyScrumBoard.BE.DataAccess
     {
         private readonly FantasyScrumBoardDbContext _dbContext;
 
-        public UnitOfWork(IAchievementRepository achievement, ICommentRepository comment,
-            INotificationRepository notification, IProjectRepository project, ISprintRepository sprint,
-            IUserRepository user, IWorkItemRepository workItem, FantasyScrumBoardDbContext dbContext)
+        public UnitOfWork(
+            IAchievementRepository achievement, 
+            ICommentRepository comment,
+            INotificationRepository notification, 
+            IProjectRepository project, 
+            ISprintRepository sprint,
+            IUserRepository user, 
+            IWorkItemRepository workItem, 
+            FantasyScrumBoardDbContext dbContext)
         {
             Achievement = achievement;
             Comment = comment;

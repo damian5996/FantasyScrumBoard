@@ -69,7 +69,7 @@ const SprintForm = ({ data, onAdd, onEdit, onClose, projectId }: SprintFormProps
     } catch (message) {
       setIsPending(false);
       setAlertData({
-        message: 'Error while adding new project',
+        message: 'Error while adding new sprint',
         type: 'error'
       });
     }

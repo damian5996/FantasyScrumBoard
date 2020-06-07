@@ -19,7 +19,15 @@ namespace FantasyScrumBoard.BE.Shared.Mappings
             CreateMap<User, UserDto>();
 
             CreateMap<UserProject, ProjectMemberDto>()
-                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.UserId));
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.UserId))
+                .ForMember(dest => dest.ProjectExp, opt => opt.MapFrom(src => src.Exp))
+                .ForMember(dest => dest.ProjectLevel, opt => opt.MapFrom(src => src.Level))
+                .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.User.FirstName))
+                .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.User.LastName))
+                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.User.Email))
+                .ForMember(dest => dest.Nick, opt => opt.MapFrom(src => src.User.Nick));
+
+            CreateMap<ProjectMemberDto, ProjectMemberViewModel>();
         }
     }
 }

@@ -10,6 +10,7 @@ namespace FantasyScrumBoard.BE.DataAccess.Repositories.Interfaces
         IQueryable<ProjectDto> GetAll();
         Task<long> InsertAsync(ProjectDto projectDto);
         Task<ProjectDto> GetByIdAsync(long projectId);
+        Task<ProjectNoLoadingDto> GetByIdNoLoadingAsync(long projectId);
         Task<IEnumerable<ProjectDto>> GetListByUserIdAsync(long userId);
     }
 }

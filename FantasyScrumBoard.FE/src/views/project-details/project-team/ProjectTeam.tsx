@@ -137,9 +137,7 @@ export const ProjectTeam = ({ team = teamMock }) => {
               <div>Lorem ipsum</div>
             </div>
 
-            <Link to="/">
-              <Button>Profile</Button>
-            </Link>
+            <Button>Profile</Button>
           </li>
         ))}
       </ul>

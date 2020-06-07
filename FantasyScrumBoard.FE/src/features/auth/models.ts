@@ -1,7 +1,9 @@
 import { RouteProps, RouteComponentProps } from 'react-router';
 import { ReactFacebookLoginInfo } from 'react-facebook-login';
 
-export interface AuthUser {}
+export interface AuthUser {
+  email: string;
+}
 
 export interface AuthProviderProps extends RouteComponentProps {
   children: React.ReactNode;

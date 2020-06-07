@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import { SwordIcon } from 'shared/icons';
 
 import csx from './Sidebar.scss';
+import { AuthContext } from 'features/auth';
 
 const SIDEBAR_LINKS = ['Main', 'Projects', 'Board', 'Map', 'User Details'];
 
@@ -30,18 +31,24 @@ export const Sidebar = () => {
   const [activeLink, setActiveLink] = useState('Main');
   const [open, setOpen] = useState(true);
 
+  const user = useContext(AuthContext);
+
   const handleClick = () => {
     setOpen(!open);
   };
 
   const handleChangeLink = (event: any, link: string) => setActiveLink(link);
 
+  const email = user.user.email as any;
+
   return (
     <div className={csx.sidebar}>
       <section className={csx.userSection}>
-        <div className={csx.avatar}>img</div>
+        <div className={csx.avatar}>
+          <img src="https://www.wprost.pl/_thumb/5f/09/909272231d1fcb0bd2a3bcd3d8c3.jpeg" />
+        </div>
         <div className={csx.userInfo}>
-          <p className={csx.userLogin}>USERNAME</p>
+          <p className={csx.userLogin}>{email}</p>
 
           <p style={{ textAlign: 'center' }}>{USER_INFO[0].label}</p>
           <p

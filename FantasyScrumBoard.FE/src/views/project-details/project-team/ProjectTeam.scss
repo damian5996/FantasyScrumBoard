@@ -62,13 +62,9 @@ $unActiveButtonHeader: rgba(26, 0, 108, 0.4);
         }
       }
 
-      & > a {
+      & > button {
         margin-top: 40px;
         width: 100%;
-
-        & > button {
-          width: 100%;
-        }
       }
 
       h2 {

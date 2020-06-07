@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router';
+import { Switch, Route, Redirect } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 
 import AuthProvider from 'features/auth';
@@ -28,11 +28,11 @@ const App = () => {
             exact
             path="/"
             render={() => {
-              return <div>Helo world</div>;
+              return <Redirect to="/login" />;
             }}
           />
 
-          <Route path="**" render={() => <div>Not Found Page </div>} />
+          <Route path="**" render={() => <Redirect to="/login" />} />
         </Switch>
       </AuthProvider>
     </BrowserRouter>

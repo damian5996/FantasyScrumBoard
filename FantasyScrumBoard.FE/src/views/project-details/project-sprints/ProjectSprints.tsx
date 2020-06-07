@@ -9,17 +9,18 @@ import csx from './ProjectSprints.scss';
 
 interface ProjectSprintsProps {
   sprints: Sprint[];
+  projectId: number;
 }
 
-export const ProjectSprints = ({ sprints }: ProjectSprintsProps) => {
+export const ProjectSprints = ({ sprints, projectId }: ProjectSprintsProps) => {
   return (
     <div className={csx.projectSprints}>
       <Button className={csx.buttonHeader}>SPRINTS</Button>
       <div className={csx.sprints}>
-        <ProjectSprintTile name="asd" id={1} />
-        <ProjectSprintTile name="asd" id={1} />
-        <ProjectSprintTile name="asd" id={1} />
-        <ProjectSprintTile name="asd" id={1} />
+        <ProjectSprintTile name="asd" id={1} projectId={projectId} />
+        <ProjectSprintTile name="asd" id={1} projectId={projectId} />
+        <ProjectSprintTile name="asd" id={1} projectId={projectId} />
+        <ProjectSprintTile name="asd" id={1} projectId={projectId} />
       </div>
     </div>
   );

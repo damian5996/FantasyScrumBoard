@@ -81,7 +81,7 @@ const LoginView = () => {
 
       <div className={csx.text}>
         <h1>WELCOME</h1>
-        <p>to FantasyScrumbBoard</p>
+        <p>to FantasyScrumBoard</p>
 
         <span className={csx.title}>Every project can be an adventure</span>
         <span className={csx.description}>(and we know it is true)</span>

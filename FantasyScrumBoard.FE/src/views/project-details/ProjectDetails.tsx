@@ -79,7 +79,7 @@ const ProjectDetails = ({ match }: ProjectDetailsProps) => {
             />
           )}
 
-          <ProjectSprints sprints={[]} />
+          <ProjectSprints sprints={[]} projectId={+match.params.id} />
 
           <ProjectTeam />
         </>

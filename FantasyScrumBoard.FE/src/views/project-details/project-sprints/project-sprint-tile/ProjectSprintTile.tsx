@@ -12,12 +12,13 @@ import csx from './ProjectSprintTile.scss';
 interface ProjectSprintTileProps {
   name: string;
   id: number;
+  projectId: number;
 }
 
-export const ProjectSprintTile = ({name, id}: ProjectSprintTileProps) => {
+export const ProjectSprintTile = ({ name, id, projectId }: ProjectSprintTileProps) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const handleClick = (event) => {
+  const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -40,7 +41,7 @@ export const ProjectSprintTile = ({name, id}: ProjectSprintTileProps) => {
       <h3>{name}</h3>
       <div style={{ backgroundColor: 'white' }}>
         <span>
-          <a href={`${window.location.origin}/project/${id}/board`}>
+          <a href={`${window.location.origin}/project/${projectId}/${id}/board`}>
             <Tooltip title="Go to board view">
               <IconButton color="secondary">
                 <BoardIcon />

@@ -24,9 +24,9 @@ const myTreeData: ReactD3TreeItem[] = [
           {
             name: 'Level 3: A',
             attributes: {
-              essa:
-                'essunia',
-              memy: 'z papiezem'
+              test:
+                'test',
+              t: 'test'
             }
           },
           {

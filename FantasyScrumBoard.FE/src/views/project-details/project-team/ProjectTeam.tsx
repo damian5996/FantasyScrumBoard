@@ -104,7 +104,7 @@ const teamMock: User[] = [
 export const ProjectTeam = ({ team = teamMock }) => {
   const { user } = useContext(AuthContext);
 
-  return (
+return (
     <div className={csx.projectTeam}>
       <Button className={csx.buttonHeader}>TEAM</Button>
 
@@ -112,7 +112,7 @@ export const ProjectTeam = ({ team = teamMock }) => {
         {team.map(member => (
           <li className={csx.member}>
             <figure>
-              <img src="https://www.wprost.pl/_thumb/5f/09/909272231d1fcb0bd2a3bcd3d8c3.jpeg" />
+              <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/cb/Robert_Downey_Jr._as_Iron_Man_in_Avengers_Infinity_War.jpg/220px-Robert_Downey_Jr._as_Iron_Man_in_Avengers_Infinity_War.jpg" />
             </figure>
             <h2>{member.nick}</h2>
             <span className={csx.class}>frontend - warrior</span>

@@ -45,7 +45,7 @@ export const Sidebar = () => {
     <div className={csx.sidebar}>
       <section className={csx.userSection}>
         <div className={csx.avatar}>
-          <img src="https://www.wprost.pl/_thumb/5f/09/909272231d1fcb0bd2a3bcd3d8c3.jpeg" />
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/cb/Robert_Downey_Jr._as_Iron_Man_in_Avengers_Infinity_War.jpg/220px-Robert_Downey_Jr._as_Iron_Man_in_Avengers_Infinity_War.jpg" />
         </div>
         <div className={csx.userInfo}>
           <p className={csx.userLogin}>{email}</p>

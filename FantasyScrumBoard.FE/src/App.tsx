@@ -6,6 +6,8 @@ import AuthProvider from 'features/auth';
 
 import { withLazy } from 'shared/utils';
 
+import GovtechLogo from './govtech.png';
+
 const LoginView = withLazy(() => import('views/login'));
 const ProjectBoardView = withLazy(() => import('views/project-board'));
 const GraphView = withLazy(() => import('views/graph'));
@@ -13,29 +15,32 @@ const MainView = withLazy(() => import('views/main'));
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <AuthProvider>
-        <Switch>
-          <Route exact path="/login" component={LoginView} />
+    <>
+      <img src={GovtechLogo} />
+      <BrowserRouter>
+        <AuthProvider>
+          <Switch>
+            <Route exact path="/login" component={LoginView} />
 
-          <Route path="/main" component={MainView} />
+            <Route path="/main" component={MainView} />
 
-          <Route exact path="/project/:projectId/:sprintId/board" component={ProjectBoardView} />
+            <Route exact path="/project/:projectId/:sprintId/board" component={ProjectBoardView} />
 
-          <Route exact path="/graph" component={GraphView} />
+            <Route exact path="/graph" component={GraphView} />
 
-          <Route
-            exact
-            path="/"
-            render={() => {
-              return <Redirect to="/login" />;
-            }}
-          />
+            <Route
+              exact
+              path="/"
+              render={() => {
+                return <Redirect to="/login" />;
+              }}
+            />
 
-          <Route path="**" render={() => <Redirect to="/login" />} />
-        </Switch>
-      </AuthProvider>
-    </BrowserRouter>
+            <Route path="**" render={() => <Redirect to="/login" />} />
+          </Switch>
+        </AuthProvider>
+      </BrowserRouter>
+    </>
   );
 };
 
